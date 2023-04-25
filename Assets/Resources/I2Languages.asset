@@ -1,0 +1,719 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0b0c553be8edd4682e9180fdd13e37, type: 3}
+  m_Name: I2Languages
+  m_EditorClassIdentifier: 
+  mSource:
+    UserAgreesToHaveItOnTheScene: 0
+    UserAgreesToHaveItInsideThePluginsFolder: 0
+    GoogleLiveSyncIsUptoDate: 1
+    mTerms:
+    - Term: Start
+      TermType: 0
+      Description: 
+      Languages:
+      - Start
+      - "\u0421\u0442\u0430\u0440\u0442"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tasks
+      TermType: 0
+      Description: 
+      Languages:
+      - Tasks
+      - "\u0417\u0430\u0434\u0430\u0447\u0438"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Go to main menu
+      TermType: 0
+      Description: 
+      Languages:
+      - Go to main menu
+      - "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u0432 \u0433\u043B\u0430\u0432\u043D\u043E\u0435
+        \u043C\u0435\u043D\u044E"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Continue
+      TermType: 0
+      Description: 
+      Languages:
+      - Continue
+      - "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Archer
+      TermType: 0
+      Description: 
+      Languages:
+      - Archer
+      - "\u041B\u0443\u0447\u043D\u0438\u043A"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Healer
+      TermType: 0
+      Description: 
+      Languages:
+      - Healer
+      - "\u0426\u0435\u043B\u0438\u0442\u0435\u043B\u044C"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Knight
+      TermType: 0
+      Description: 
+      Languages:
+      - Knight
+      - "\u0420\u044B\u0446\u0430\u0440\u044C"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Sling shooter
+      TermType: 0
+      Description: 
+      Languages:
+      - Sling shooter
+      - "\u0420\u043E\u0433\u0430\u0442\u0447\u0438\u043A"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Rogue
+      TermType: 0
+      Description: 
+      Languages:
+      - Rogue
+      - "\u0420\u0430\u0437\u0431\u043E\u0439\u043D\u0438\u043A"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Peasant
+      TermType: 0
+      Description: 
+      Languages:
+      - Peasant
+      - "\u041A\u0440\u0435\u0441\u0442\u044C\u044F\u043D\u0438\u043D"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Souls
+      TermType: 0
+      Description: 
+      Languages:
+      - Souls
+      - "\u0414\u0443\u0448"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: You have won
+      TermType: 0
+      Description: 
+      Languages:
+      - You have won
+      - "\u0412\u044B \u043E\u0434\u0435\u0440\u0436\u0430\u043B\u0438 \u043F\u043E\u0431\u0435\u0434\u0443"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: You have lost
+      TermType: 0
+      Description: 
+      Languages:
+      - You have lost
+      - "\u0412\u044B \u043F\u043E\u0442\u0435\u0440\u043F\u0435\u043B\u0438 \u043F\u043E\u0440\u0430\u0436\u0435\u043D\u0438\u0435"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Annihilation
+      TermType: 0
+      Description: 
+      Languages:
+      - Defeat the enemy army
+      - "\u041F\u043E\u0431\u0435\u0434\u0438\u0442\u0435 \u0432\u0440\u0430\u0436\u0435\u0441\u043A\u0443\u044E
+        \u0430\u0440\u043C\u0438\u044E"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Defence
+      TermType: 0
+      Description: 
+      Languages:
+      - Protect your ally
+      - "\u0417\u0430\u0449\u0438\u0442\u0438\u0442\u0435 \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u0430"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: HoldOn
+      TermType: 0
+      Description: 
+      Languages:
+      - Hold out until the end of time
+      - "\u041F\u0440\u043E\u0434\u0435\u0440\u0436\u0438\u0442\u0435\u0441\u044C
+        \u0434\u043E \u043A\u043E\u043D\u0446\u0430 \u0432\u0440\u0435\u043C\u0435\u043D\u0438"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: CustomBattle
+      TermType: 0
+      Description: 
+      Languages:
+      - Just fun
+      - "\u0420\u0430\u0437\u0432\u043B\u0435\u043A\u0430\u0439\u0442\u0435\u0441\u044C"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: DefenceEverybody
+      TermType: 0
+      Description: 
+      Languages:
+      - Defence your allies, no one should die
+      - "\u0417\u0430\u0449\u0438\u0442\u0438\u0442\u0435 \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u043E\u0432,
+        \u043D\u0438\u043A\u0442\u043E \u043D\u0435 \u0434\u043E\u043B\u0436\u0435\u043D
+        \u0443\u043C\u0435\u0440\u0435\u0442\u044C"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: HideUI
+      TermType: 0
+      Description: 
+      Languages:
+      - Hide / Show
+      - "\u0421\u043A\u0440\u044B\u0442\u044C / \u041F\u043E\u043A\u0430\u0437\u0430\u0442\u044C"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Exit
+      TermType: 0
+      Description: 
+      Languages:
+      - Exit
+      - "\u0412\u044B\u0445\u043E\u0434"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Helloworld
+      TermType: 0
+      Description: 
+      Languages:
+      - Welcome to tutorial Souls War
+      - "\u0414\u043E\u0431\u0440\u043E \u043F\u043E\u0436\u0430\u043B\u043E\u0432\u0430\u0442\u044C
+        \u0432 \u043E\u0431\u0443\u0447\u0435\u043D\u0438\u0435 \u043F\u043E \u0438\u0433\u0440\u0435
+        Souls War"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SkipTutorial
+      TermType: 0
+      Description: 
+      Languages:
+      - Skip tutorial
+      - "\u041F\u0440\u043E\u043F\u0443\u0441\u0442\u0438\u0442\u044C \u043E\u0431\u0443\u0447\u0435\u043D\u0438\u0435"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/Tasks
+      TermType: 0
+      Description: 
+      Languages:
+      - There are tasks on this window for the current level
+      - "\u0412 \u044D\u0442\u043E\u043C \u043E\u043A\u043D\u0435 \u043E\u043F\u0438\u0441\u0430\u043D\u044B
+        \u0437\u0430\u0434\u0430\u0447\u0438 \u043D\u0430 \u0442\u0435\u043A\u0443\u0449\u0438\u0439
+        \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/WarScreen
+      TermType: 0
+      Description: 
+      Languages:
+      - This is the battle screen, you can inspect it by scrolling the screen
+      - "\u042D\u0442\u043E \u044D\u043A\u0440\u0430\u043D \u0431\u0438\u0442\u0432\u044B,
+        \u0442\u044B \u043C\u043E\u0436\u0435\u0448\u044C \u043E\u0441\u043C\u0430\u0442\u0440\u0438\u0432\u0430\u0442\u044C
+        \u0435\u0433\u043E \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u043F\u0440\u043E\u043A\u0440\u0443\u0442\u043A\u0438
+        \u044D\u043A\u0440\u0430\u043D\u0430"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/CreatingBar
+      TermType: 0
+      Description: 
+      Languages:
+      - Here is a panel for creating troops, the price of units is indicated under
+        their icon
+      - "\u0417\u0434\u0435\u0441\u044C \u0440\u0430\u0441\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0430
+        \u043F\u0430\u043D\u0435\u043B\u044C \u0434\u043B\u044F \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F
+        \u0432\u043E\u0439\u0441\u043A, \u0446\u0435\u043D\u0430 \u044E\u043D\u0438\u0442\u043E\u0432
+        \u0443\u043A\u0430\u0437\u0430\u043D\u0430 \u043F\u043E\u0434 \u0438\u0445
+        \u0438\u043A\u043E\u043D\u043A\u043E\u0439"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/SoulsCount
+      TermType: 0
+      Description: 
+      Languages:
+      - This window shows the total number of souls for level
+      - "\u0412 \u044D\u0442\u043E\u043C \u043E\u043A\u043D\u0435 \u043F\u043E\u043A\u0430\u0437\u0430\u043D\u043E
+        \u043E\u0431\u0449\u0435\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E
+        \u0434\u0443\u0448 \u043D\u0430 \u0443\u0440\u043E\u0432\u0435\u043D\u044C"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/CreatingUnits
+      TermType: 0
+      Description: 
+      Languages:
+      - You can place available troops only in the highlighted green zone
+      - "\u0420\u0430\u0441\u0441\u0442\u0430\u0432\u043B\u044F\u0442\u044C \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0435
+        \u0432\u043E\u0439\u0441\u043A\u0430 \u043C\u043E\u0436\u043D\u043E \u043B\u0438\u0448\u044C
+        \u043D\u0430 \u043F\u043E\u0434\u0441\u0432\u0435\u0447\u0435\u043D\u043D\u043E\u0439
+        \u0437\u0435\u043B\u0435\u043D\u043E\u0439 \u0437\u043E\u043D\u0435"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/PlaceUnits
+      TermType: 0
+      Description: 
+      Languages:
+      - You can place available troops only in the highlighted green zone. To create
+        units, click on its icon, and then click on the available highlighted area.
+        Try to spend all your souls
+      - "\u0420\u0430\u0441\u0441\u0442\u0430\u0432\u043B\u044F\u0442\u044C \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0435
+        \u0432\u043E\u0439\u0441\u043A\u0430 \u043C\u043E\u0436\u043D\u043E \u043B\u0438\u0448\u044C
+        \u043D\u0430 \u043F\u043E\u0434\u0441\u0432\u0435\u0447\u0435\u043D\u043D\u043E\u0439
+        \u0437\u0435\u043B\u0435\u043D\u043E\u0439 \u0437\u043E\u043D\u0435. \u0414\u043B\u044F
+        \u0441\u043E\u0437\u0434\u0430\u043D\u0438\u044F \u044E\u043D\u0438\u0442\u043E\u0432
+        \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u043D\u0430\u0436\u0430\u0442\u044C
+        \u043D\u0430 \u0435\u0433\u043E \u0438\u043A\u043E\u043D\u043A\u0443, \u0430
+        \u043F\u043E\u0441\u043B\u0435 \u044D\u0442\u043E\u0433\u043E \u043D\u0430\u0436\u0430\u0442\u044C
+        \u043D\u0430 \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u0443\u044E \u043F\u043E\u0434\u0441\u0432\u0435\u0447\u0435\u043D\u043D\u0443\u044E
+        \u0437\u043E\u043D\u0443. \u0421\u0442\u0430\u0440\u0430\u0439\u0442\u0435\u0441\u044C
+        \u043F\u043E\u0442\u0440\u0430\u0442\u0438\u0442\u044C \u0432\u0441\u0435
+        \u0434\u0443\u0448\u0438"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/EnemyPos
+      TermType: 0
+      Description: 
+      Languages:
+      - The enemy army is highlighted in red, allies in blue, and units that should
+        be protected in green color
+      - "\u0412\u0440\u0430\u0436\u0435\u0441\u043A\u0430\u044F \u0430\u0440\u043C\u0438\u044F
+        \u0432\u044B\u0434\u0435\u043B\u044F\u0435\u0442\u0441\u044F \u043A\u0440\u0430\u0441\u043D\u044B\u043C
+        \u0446\u0432\u0435\u0442\u043E\u043C, \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u0438
+        \u0441\u0438\u043D\u0438\u043C, \u0430 \u044E\u043D\u0438\u0442\u044B, \u043A\u043E\u0442\u043E\u0440\u044B\u0445
+        \u0441\u043B\u0435\u0434\u0443\u0435\u0442 \u0437\u0430\u0449\u0438\u0449\u0430\u0442\u044C
+        \u0437\u0435\u043B\u0435\u043D\u044B\u043C"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/DeleteUnits
+      TermType: 0
+      Description: 
+      Languages:
+      - If you place a unit incorrectly, these two buttons will help you, when you
+        click on the first one in the upper right corner and then click on the unit
+        it will be deleted, the second one will delete all units
+      - "\u0415\u0441\u043B\u0438 \u0432\u044B \u043D\u0435\u043F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E
+        \u043F\u043E\u0441\u0442\u0430\u0432\u0438\u043B\u0438 \u044E\u043D\u0438\u0442\u0430,
+        \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u043F\u0435\u0440\u0432\u043E\u0439
+        \u043A\u043D\u043E\u043F\u043A\u0438 \u0432 \u0432\u0435\u0440\u0445\u043D\u0435\u043C
+        \u043F\u0440\u0430\u0432\u043E\u043C \u0443\u0433\u043B\u0443 \u043C\u043E\u0436\u043D\u043E
+        \u0443\u0434\u0430\u043B\u0438\u0442\u044C \u0432\u0430\u0448\u0435\u0433\u043E
+        \u0432\u044B\u0431\u0440\u0430\u043D\u043D\u043E\u0433\u043E \u044E\u043D\u0438\u0442\u0430,
+        \u0432\u0442\u043E\u0440\u0430\u044F \u0443\u0434\u0430\u043B\u0438\u0442
+        \u0432\u0441\u0435\u0445 \u044E\u043D\u0438\u0442\u043E\u0432"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/HideUI
+      TermType: 0
+      Description: 
+      Languages:
+      - In order to view the field better, you can hide the interface by this button
+      - "\u0414\u043B\u044F \u0442\u043E\u0433\u043E \u0447\u0442\u043E\u0431\u044B
+        \u0440\u0430\u0441\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u043B\u0443\u0447\u0448\u0435
+        \u043F\u043E\u043B\u0435, \u043C\u043E\u0436\u043D\u043E \u0441\u043A\u0440\u044B\u0442\u044C
+        \u0438\u043D\u0442\u0435\u0440\u0444\u0435\u0439\u0441 \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E
+        \u044D\u0442\u043E\u0439 \u043A\u043D\u043E\u043F\u043A\u0438"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/Start
+      TermType: 0
+      Description: 
+      Languages:
+      - When you are ready, click on this button to start the battle
+      - "\u041A\u043E\u0433\u0434\u0430 \u0431\u0443\u0434\u0435\u0442\u0435 \u0433\u043E\u0442\u043E\u0432\u044B,
+        \u043D\u0430\u0436\u043C\u0438\u0442\u0435 \u043D\u0430 \u044D\u0442\u0443
+        \u043A\u043D\u043E\u043F\u043A\u0443, \u0447\u0442\u043E\u0431\u044B \u043D\u0430\u0447\u0430\u0442\u044C
+        \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u0435"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/X2
+      TermType: 0
+      Description: 
+      Languages:
+      - If necessary, you can speed up the battle by this button
+      - "\u041F\u0440\u0438 \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\u0441\u0442\u0438
+        \u043C\u043E\u0436\u043D\u043E \u0443\u0441\u043A\u043E\u0440\u0438\u0442\u044C
+        \u0441\u0440\u0430\u0436\u0435\u043D\u0438\u0435 \u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E
+        \u044D\u0442\u043E\u0439 \u043A\u043D\u043E\u043F\u043A\u0438"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/HPbar
+      TermType: 0
+      Description: 
+      Languages:
+      - To analyze the situation on the field, you can click on anyone of units to
+        display his health points
+      - "\u0427\u0442\u043E\u0431\u044B \u043F\u0440\u043E\u0430\u043D\u0430\u043B\u0438\u0437\u0438\u0440\u043E\u0432\u0430\u0442\u044C
+        \u0441\u0438\u0442\u0443\u0430\u0446\u0438\u044E \u043D\u0430 \u043F\u043E\u043B\u0435,
+        \u043C\u043E\u0436\u043D\u043E \u043D\u0430\u0436\u0430\u0442\u044C \u043D\u0430
+        \u043B\u044E\u0431\u043E\u0433\u043E \u0438\u0437 \u044E\u043D\u0438\u0442\u043E\u0432,
+        \u0447\u0442\u043E\u0431\u044B \u0443\u0437\u043D\u0430\u0442\u044C \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E
+        \u0435\u0433\u043E \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/Lose
+      TermType: 0
+      Description: 
+      Languages:
+      - Every defeat makes you stronger, try again
+      - "\u041A\u0430\u0436\u0434\u043E\u0435 \u043F\u043E\u0440\u0430\u0436\u0435\u043D\u0438\u0435
+        \u0434\u0435\u043B\u0430\u0435\u0442 \u0432\u0430\u0441 \u0441\u0438\u043B\u044C\u043D\u0435\u0435,
+        \u043F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0441\u043D\u043E\u0432\u0430"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Tutor/Win
+      TermType: 0
+      Description: 
+      Languages:
+      - You have completed the task perfectly and successfully finished the tutorial
+      - "\u0412\u044B \u043E\u0442\u043B\u0438\u0447\u043D\u043E \u0441\u043F\u0440\u0430\u0432\u0438\u043B\u0438\u0441\u044C
+        \u0441 \u043F\u043E\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u043D\u043E\u0439
+        \u0437\u0430\u0434\u0430\u0447\u0435\u0439 \u0438 \u0443\u0441\u043F\u0435\u0448\u043D\u043E
+        \u043F\u0440\u043E\u0448\u043B\u0438 \u043E\u0431\u0443\u0447\u0435\u043D\u0438\u0435"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: PeasantDesc
+      TermType: 0
+      Description: 
+      Languages:
+      - Basic melee unit.
+      - "\u0411\u0430\u0437\u043E\u0432\u044B\u0439 \u044E\u043D\u0438\u0442 \u0431\u043B\u0438\u0436\u043D\u0435\u0433\u043E
+        \u0431\u043E\u044F."
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Slingshooter
+      TermType: 0
+      Description: 
+      Languages:
+      - Sling shooter
+      - "\u0420\u043E\u0433\u0430\u0442\u0447\u0438\u043A"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: PeasantStats
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Health: 10
+
+        Movement speed: 1.5
+
+        Attack damage: 1.9
+
+        Cooldown
+        attack: 3
+
+        Number of attacked targets: 1
+
+        Attack radius:
+        1.7
+
+        Damage resistance: 0%'
+      - "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435: 10\n\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C
+        \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F:
+        1.5\n\u0423\u0440\u043E\u043D \u043E\u0442 \u0430\u0442\u0430\u043A\u0438:
+        1.9\n\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 \u0430\u0442\u0430\u043A\u0438:
+        3\n\u041A\u043E\u043B-\u0432\u043E \u0430\u0442\u0430\u043A\u0443\u0435\u043C\u044B\u0445
+        \u0446\u0435\u043B\u0435\u0439: 1\n\u0420\u0430\u0434\u0438\u0443\u0441 \u0430\u0442\u0430\u043A\u0438:
+        1.7\n\u0421\u043E\u043F\u0440\u043E\u0442\u0438\u0432\u043B\u0435\u043D\u0438\u0435
+        \u0443\u0440\u043E\u043D\u0443: 0%"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: RogueDesc
+      TermType: 0
+      Description: 
+      Languages:
+      - A fast unit that is well suited for rapid attacks.
+      - "\u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u044E\u043D\u0438\u0442 \u0431\u043B\u0438\u0436\u043D\u0435\u0433\u043E
+        \u0431\u043E\u044F, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0445\u043E\u0440\u043E\u0448\u043E
+        \u043F\u043E\u0434\u0445\u043E\u0434\u0438\u0442 \u0434\u043B\u044F \u0441\u0442\u0440\u0435\u043C\u0438\u0442\u0435\u043B\u044C\u043D\u044B\u0445
+        \u0430\u0442\u0430\u043A. "
+      Flags: 0000
+      Languages_Touch: []
+    - Term: RogueStats
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Health: 9
+
+        Movement speed: 2.5
+
+        Attack damage: 1.7
+
+        Cooldown
+        attack: 2.2
+
+        Number of attacked targets: 1
+
+        Attack radius:
+        1.65
+
+        Damage resistance: 0%'
+      - "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435: 9\n\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C
+        \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F:
+        2.5\n\u0423\u0440\u043E\u043D \u043E\u0442 \u0430\u0442\u0430\u043A\u0438:
+        1.7\n\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 \u0430\u0442\u0430\u043A\u0438:
+        2.2\n\u041A\u043E\u043B-\u0432\u043E \u0430\u0442\u0430\u043A\u0443\u0435\u043C\u044B\u0445
+        \u0446\u0435\u043B\u0435\u0439: 1\n\u0420\u0430\u0434\u0438\u0443\u0441 \u0430\u0442\u0430\u043A\u0438:
+        1.65\n\u0421\u043E\u043F\u0440\u043E\u0442\u0438\u0432\u043B\u0435\u043D\u0438\u0435
+        \u0443\u0440\u043E\u043D\u0443: 0%"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: KnightDesc
+      TermType: 0
+      Description: 
+      Languages:
+      - A melee unit that is well suited for containing the enemy and absorbing large
+        amount of damage.
+      - "\u042E\u043D\u0438\u0442 \u0431\u043B\u0438\u0436\u043D\u0435\u0433\u043E
+        \u0431\u043E\u044F, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043F\u043E\u0434\u0445\u043E\u0434\u0438\u0442
+        \u0434\u043B\u044F \u0441\u0434\u0435\u0440\u0436\u0438\u0432\u0430\u043D\u0438\u044F
+        \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430 \u0438 \u043F\u043E\u0433\u043B\u043E\u0449\u0435\u043D\u0438\u044F
+        \u0431\u043E\u043B\u044C\u0448\u043E\u0433\u043E \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u0430
+        \u0443\u0440\u043E\u043D\u0430."
+      Flags: 0000
+      Languages_Touch: []
+    - Term: KnightStats
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Health: 22
+
+        Movement speed: 1
+
+        Attack damage: 1.5
+
+        Cooldown
+        attack: 2.5
+
+        Number of attacked targets: 1
+
+        Attack radius:
+        1.8
+
+        Damage resistance: 25%'
+      - "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435: 22\n\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C
+        \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F:
+        1\n\u0423\u0440\u043E\u043D \u043E\u0442 \u0430\u0442\u0430\u043A\u0438:
+        1.5\n\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 \u0430\u0442\u0430\u043A\u0438:
+        2.5\n\u041A\u043E\u043B-\u0432\u043E \u0430\u0442\u0430\u043A\u0443\u0435\u043C\u044B\u0445
+        \u0446\u0435\u043B\u0435\u0439: 1\n\u0420\u0430\u0434\u0438\u0443\u0441 \u0430\u0442\u0430\u043A\u0438:
+        1.8\n\u0421\u043E\u043F\u0440\u043E\u0442\u0438\u0432\u043B\u0435\u043D\u0438\u0435
+        \u0443\u0440\u043E\u043D\u0443: 25%"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SlingshooterDesc
+      TermType: 0
+      Description: 
+      Languages:
+      - A ranged unit that fires at enemies at high speed.
+      - "\u042E\u043D\u0438\u0442 \u0434\u0430\u043B\u044C\u043D\u0435\u0433\u043E
+        \u0431\u043E\u044F, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043E\u0431\u0441\u0442\u0440\u0435\u043B\u0438\u0432\u0430\u0435\u0442
+        \u0432\u0440\u0430\u0433\u043E\u0432 \u0441 \u0432\u044B\u0441\u043E\u043A\u043E\u0439
+        \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u044C\u044E."
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SlingshooterStats
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Health: 7
+
+        Movement speed: 1.7
+
+        Attack damage: 2
+
+        Cooldown
+        attack: 3.2
+
+        Number of attacked targets: 1
+
+        Attack radius:
+        7.5
+
+        Damage resistance: 0%'
+      - "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435: 7\n\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C
+        \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F:
+        1.7\n\u0423\u0440\u043E\u043D \u043E\u0442 \u0430\u0442\u0430\u043A\u0438:
+        2\n\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 \u0430\u0442\u0430\u043A\u0438:
+        3.2\n\u041A\u043E\u043B-\u0432\u043E \u0430\u0442\u0430\u043A\u0443\u0435\u043C\u044B\u0445
+        \u0446\u0435\u043B\u0435\u0439: 1\n\u0420\u0430\u0434\u0438\u0443\u0441 \u0430\u0442\u0430\u043A\u0438:
+        7.5\n\u0421\u043E\u043F\u0440\u043E\u0442\u0438\u0432\u043B\u0435\u043D\u0438\u0435
+        \u0443\u0440\u043E\u043D\u0443: 0%"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ArcherStats
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Health: 12
+
+        Movement speed: 1.7
+
+        Attack damage: 5
+
+        Cooldown
+        attack: 5
+
+        Number of attacked targets: 1
+
+        Attack radius:
+        20
+
+        Damage resistance: 10%'
+      - "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435: 12\n\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C
+        \u043F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F:
+        1.7\n\u0423\u0440\u043E\u043D \u043E\u0442 \u0430\u0442\u0430\u043A\u0438:
+        5\n\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430 \u0430\u0442\u0430\u043A\u0438:
+        5\n\u041A\u043E\u043B-\u0432\u043E \u0430\u0442\u0430\u043A\u0443\u0435\u043C\u044B\u0445
+        \u0446\u0435\u043B\u0435\u0439: 1\n\u0420\u0430\u0434\u0438\u0443\u0441 \u0430\u0442\u0430\u043A\u0438:
+        20\n\u0421\u043E\u043F\u0440\u043E\u0442\u0438\u0432\u043B\u0435\u043D\u0438\u0435
+        \u0443\u0440\u043E\u043D\u0443: 10%"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ArcherDesc
+      TermType: 0
+      Description: 
+      Languages:
+      - A ranged unit that deals a large amount of damage at long range.
+      - "\u042E\u043D\u0438\u0442 \u0434\u0430\u043B\u044C\u043D\u0435\u0433\u043E
+        \u0431\u043E\u044F, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043D\u0430\u043D\u043E\u0441\u0438\u0442
+        \u0431\u043E\u043B\u044C\u0448\u043E\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E
+        \u0443\u0440\u043E\u043D\u0430 \u043D\u0430 \u0434\u0430\u043B\u044C\u043D\u0438\u0445
+        \u0434\u0438\u0441\u0442\u0430\u043D\u0446\u0438\u044F\u0445."
+      Flags: 0000
+      Languages_Touch: []
+    - Term: HealerStats
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Health: 8
+
+        Movement speed: 1.6
+
+        Attack damage: 1
+
+        Cooldown
+        attack: 5
+
+        Number of attacked targets: 1
+
+        Attack radius:
+        5
+
+        Damage resistance: 0%
+
+        Healing value: 10
+
+        Number
+        of healing targets: 1-5
+
+        Healing radius: 7'
+      - "\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435: 8\n\u0421\u043A\u043E\u0440\u043E\u0441\u0442\u044C
+        \u0434\u0432\u0438\u0436\u0435\u043D\u0438\u044F: 1.6\n\u0423\u0440\u043E\u043D
+        \u043E\u0442 \u0430\u0442\u0430\u043A\u0438: 1\n\u041F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0430
+        \u0430\u0442\u0430\u043A\u0438: 5\n\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E
+        \u0430\u0442\u0430\u043A\u043E\u0432\u0430\u043D\u043D\u044B\u0445 \u0446\u0435\u043B\u0435\u0439:
+        1\n\u0420\u0430\u0434\u0438\u0443\u0441 \u0430\u0442\u0430\u043A\u0438: 5\n\u0423\u0441\u0442\u043E\u0439\u0447\u0438\u0432\u043E\u0441\u0442\u044C
+        \u043A \u043F\u043E\u0432\u0440\u0435\u0436\u0434\u0435\u043D\u0438\u044F\u043C:
+        0%\n\u041A\u043E\u043B-\u0432\u043E \u0438\u0441\u0446\u0435\u043B\u0435\u043D\u0438\u044F:
+        10\n\u041A\u043E\u043B-\u0432\u043E \u0446\u0435\u043B\u0435\u0439 \u0434\u043B\u044F
+        \u0438\u0441\u0446\u0435\u043B\u0435\u043D\u0438\u044F: 1-5\n\u0420\u0430\u0434\u0438\u0443\u0441
+        \u0438\u0441\u0446\u0435\u043B\u0435\u043D\u0438\u044F: 7"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: HealerDesc
+      TermType: 0
+      Description: 
+      Languages:
+      - A support unit that heals allies but not allied healers. When the healer
+        is near a large group of damaged units, he distributes the amount of healing
+        among them. If there are few damaged allies nearby, he heals the most damaged
+        ally.
+      - "\u042E\u043D\u0438\u0442 \u043F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0438,
+        \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u0438\u0441\u0446\u0435\u043B\u044F\u0435\u0442
+        \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u043E\u0432 \u043D\u043E \u043D\u0435
+        \u0441\u043E\u044E\u0437\u043D\u044B\u0445 \u0446\u0435\u043B\u0438\u0442\u0435\u043B\u0435\u0439.
+        \u041A\u043E\u0433\u0434\u0430 \u0446\u0435\u043B\u0438\u0442\u0435\u043B\u044C
+        \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0441\u044F \u043E\u043A\u043E\u043B\u043E
+        \u0431\u043E\u043B\u044C\u0448\u043E\u0439 \u0433\u0440\u0443\u043F\u043F\u044B
+        \u0440\u0430\u043D\u0435\u043D\u044B\u0445 \u044E\u043D\u0438\u0442\u043E\u0432,
+        \u043E\u043D \u0440\u0430\u0441\u043F\u0440\u0435\u0434\u0435\u043B\u044F\u0435\u0442
+        \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0438\u0441\u0446\u0435\u043B\u0435\u043D\u0438\u044F
+        \u0441\u0440\u0435\u0434\u0438 \u043D\u0438\u0445. \u0415\u0441\u043B\u0438
+        \u0436\u0435 \u0440\u044F\u0434\u043E\u043C \u043C\u0430\u043B\u043E \u0440\u0430\u043D\u0435\u043D\u044B\u0445
+        \u044E\u043D\u0438\u0442\u043E\u0432, \u043E\u043D \u0438\u0441\u0446\u0435\u043B\u044F\u0435\u0442
+        \u0441\u0430\u043C\u043E\u0433\u043E \u043F\u043E\u0432\u0440\u0435\u0436\u0434\u0451\u043D\u043D\u043E\u0433\u043E
+        \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u0430"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Stats
+      TermType: 0
+      Description: 
+      Languages:
+      - Stats
+      - "\u0425\u0430\u0440\u0430\u043A\u0442\u0435\u0440\u0438\u0441\u0442\u0438\u043A\u0438"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Description
+      TermType: 0
+      Description: 
+      Languages:
+      - Description
+      - "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Glossary
+      TermType: 0
+      Description: 
+      Languages:
+      - Glossary
+      - "\u0413\u043B\u043E\u0441\u0441\u0430\u0440\u0438\u0439"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: SocialMedia
+      TermType: 0
+      Description: 
+      Languages:
+      - Social media
+      - "\u0421\u043E\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0435 \u0441\u0435\u0442\u0438"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Donate
+      TermType: 0
+      Description: 
+      Languages:
+      - Donate
+      - "\u041F\u043E\u0436\u0435\u0440\u0442\u0432\u043E\u0432\u0430\u043D\u0438\u044F"
+      Flags: 0000
+      Languages_Touch: []
+    CaseInsensitiveTerms: 0
+    OnMissingTranslation: 1
+    mTerm_AppName: 
+    mLanguages:
+    - Name: English
+      Code: en
+      Flags: 0
+    - Name: Russian
+      Code: ru
+      Flags: 0
+    IgnoreDeviceLanguage: 0
+    _AllowUnloadingLanguages: 0
+    Google_WebServiceURL: 
+    Google_SpreadsheetKey: 
+    Google_SpreadsheetName: 
+    Google_LastUpdatedVersion: 
+    Google_Password: change_this
+    GoogleUpdateFrequency: 3
+    GoogleInEditorCheckFrequency: 2
+    GoogleUpdateSynchronization: 1
+    GoogleUpdateDelay: 0
+    Assets: []
+    Spreadsheet_LocalFileName: 
+    Spreadsheet_LocalCSVSeparator: ','
+    Spreadsheet_LocalCSVEncoding: utf-8
+    Spreadsheet_SpecializationAsRows: 1
