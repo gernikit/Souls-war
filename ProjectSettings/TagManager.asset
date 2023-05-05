@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - SpawnZone
+  - PlayerAmmo
+  - EnemyAmmo
+  - Footing
+  - Particle
+  - Aura
+  - SpawnEnemyZone
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Mobs
+  - Obstacles
+  - Ammo
+  - Auras
+  - AvailableZones
+  - BefoteUI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Map
+    uniqueID: 3423299975
+    locked: 0
+  - name: Trap
+    uniqueID: 1945130575
+    locked: 0
+  - name: Mobs
+    uniqueID: 4071536435
+    locked: 0
+  - name: Ammo
+    uniqueID: 2290467867
+    locked: 0
+  - name: UI
+    uniqueID: 2251730195
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Auras
+    uniqueID: 3901008775
+    locked: 0
+  - name: BefoteUI
+    uniqueID: 3036385553
+    locked: 0
