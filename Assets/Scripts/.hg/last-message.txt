@@ -1,1 +1,0 @@
-add HEALER with (if 2 >= count then healer heling, otherwise deal damage)
