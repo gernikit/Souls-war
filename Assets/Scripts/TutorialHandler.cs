@@ -187,7 +187,7 @@ public class TutorialHandler : MonoBehaviour
 
     public void OnTurnZoom(bool enabled)
     {
-        mainCamera.GetComponent<Zoom>().enabled = enabled;
+        mainCamera.GetComponent<GameCameraHandler>().enabled = enabled;
     }
 
     public void ResetPosCamera()

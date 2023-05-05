@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zoom : MonoBehaviour
+public class GameCameraHandler : MonoBehaviour
 {
     public float maxZoom = 5.5f;
     public float minZoom = 5.5f;
-    public float minXPos = 0;//leftBorder
+    public float minXPos = 0;//leftBorde
     public float maxXPos = 0;//rightBorder
     public float minYPos = 0;
     public float maxYPos = 0;
