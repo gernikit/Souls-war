@@ -1,24 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TasksWindowHandler : MonoBehaviour
 {
-    public GameObject tasksWindowElements; //must be set in inspector!!!
-    public GameObject otherElements;    //must be set in inspector!!!
-    public GameObject pauseMenuButton; //must be set in inspector!!!
-    public GameObject timerHoldOn;//must be set in inspector!!! (optional)
-    bool pause = false;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    protected GameObject tasksWindowElements; //must be set in inspector!!!
+    [SerializeField]
+    protected GameObject otherElements;    //must be set in inspector!!!
+    [SerializeField]
+    protected GameObject pauseMenuButton; //must be set in inspector!!!
+    [SerializeField]
+    protected GameObject timerHoldOn;//must be set in inspector!!! (optional)
+    
+    private bool pause = false;
+    private void Start()
     {
         PauseGame();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void PauseGame()

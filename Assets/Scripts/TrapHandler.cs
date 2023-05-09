@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections.Concurrent;
 public enum TypesOfTrap
 {
     Spikes,
@@ -9,36 +7,35 @@ public enum TypesOfTrap
 }
 public class TrapHandler : MonoBehaviour
 {
-    Collider2D trapCollider;
-    Animator animator;
+    private Collider2D trapCollider;
+    private Animator animator;
 
     [SerializeField]
-    List<Collider2D> closeEnemyColliders;
+    private List<Collider2D> closeEnemyColliders;
 
-    public TypesOfTrap typeOfTrap;//must set in inspector!!!
-    public float attackDamage = 1f;
-    public float startTimeBtwAttack = 10f;
-    protected float timeBtwAttack = 0f;
-    public int targetsCount = 1;
-
-    protected AudioSource audioSource;
     [SerializeField]
-    protected AudioClip bitSound;
+    private TypesOfTrap typeOfTrap;//must set in inspector!!!
+    [SerializeField]
+    private float attackDamage = 1f;
+    [SerializeField]
+    private float startTimeBtwAttack = 10f;
+    [SerializeField]
+    private float timeBtwAttack = 0f;
+    [SerializeField]
+    private int targetsCount = 1;
 
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip bitSound;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Mob.gameIsStop)
-        {
-        }
-        else
+        if (!Mob.gameIsStop)
         {
             Cooldown();
             if (closeEnemyColliders.Count > 0)
@@ -46,7 +43,7 @@ public class TrapHandler : MonoBehaviour
         }
     }
 
-    protected void Init()
+    private void Init()
     {
         trapCollider = gameObject.GetComponent<Collider2D>();
         animator = gameObject.GetComponent<Animator>();
@@ -57,7 +54,7 @@ public class TrapHandler : MonoBehaviour
         audioSource.playOnAwake = false;
     }
 
-    public void Cooldown()
+    private void Cooldown()
     {
         if (timeBtwAttack > 0)
             timeBtwAttack -= Time.deltaTime;
@@ -93,7 +90,7 @@ public class TrapHandler : MonoBehaviour
         Destroy(gameObject.transform.parent.gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         if (typeOfTrap == TypesOfTrap.Spikes || typeOfTrap == TypesOfTrap.Spears)
         {
@@ -118,25 +115,14 @@ public class TrapHandler : MonoBehaviour
         }                 
     }
 
-    void OnTriggerExit2D(Collider2D collider)
-    {
-        /*
-        if ((collider.tag == "Player" || collider.tag == "Enemy") && collider is CapsuleCollider2D && collider.gameObject.layer == 6)
-            if (closeEnemyColliders.Contains(collider))
-                closeEnemyColliders.Remove(collider);
-        */
-        
-        if (typeOfTrap == TypesOfTrap.Spikes || typeOfTrap == TypesOfTrap.Spears)
+    private void OnTriggerExit2D(Collider2D collider)
+    {       
+        if (typeOfTrap == TypesOfTrap.Spikes || typeOfTrap == TypesOfTrap.Spears &&
+            collider.tag == "Footing" &&
+            collider.transform.parent.gameObject.tag == "Player" || collider.transform.parent.gameObject.tag == "Enemy" &&
+            closeEnemyColliders.Contains(collider.transform.parent.gameObject.GetComponent<CapsuleCollider2D>()))
         {
-            if (collider.tag == "Footing")
-            {
-                if (collider.transform.parent.gameObject.tag == "Player" || collider.transform.parent.gameObject.tag == "Enemy")
-                {
-                    if (closeEnemyColliders.Contains(collider.transform.parent.gameObject.GetComponent<CapsuleCollider2D>()))
-                        closeEnemyColliders.Remove(collider.transform.parent.gameObject.GetComponent<CapsuleCollider2D>());
-                }
-            }
+            closeEnemyColliders.Remove(collider.transform.parent.gameObject.GetComponent<CapsuleCollider2D>());
         }
-        
     }
 }

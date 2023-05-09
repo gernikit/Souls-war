@@ -1,90 +1,83 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleRangerMob : Mob
 {
     [Header("Ranger parameters")]
-    public float shootingRange = 5f;
+    [SerializeField]
+    protected float shootingRange = 5f;
     protected bool canShoot = false;
 
 
     [Header("Ammo parameters")]
-    public Transform placeForShoot;
-    //public string bulletPath;
-    public AmmoType ammoType = AmmoType.None;
-    Vector3 targetPosition;
+    [SerializeField]
+    protected Transform placeForShoot;
+    [SerializeField]
+    protected AmmoType ammoType = AmmoType.None;
+    protected Vector3 targetPosition;
 
     [Header("Ammo bezier parameters")]
-    public float bezierOffset = 4f;
-    public float speedAmmo = 4f;
-    //TypePath .... ???
+    [SerializeField]
+    protected float bezierOffset = 4f;
+    [SerializeField]
+    protected float speedAmmo = 4f;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         Init();
     }
-
     
-    void Update()
+    private void Update()
     {
-        if (gameIsStop)
+        if (!gameIsStop)
         {
-        }
-        else
-        {
-            if (!IsDead())
-            {
-                if (targetsList == null || targetsList.Count == 0)
-                    GetTargets();
-
-                if (canShoot)
-                {
-                    //proxy.position = model.position; // do it because OFFSET POS proxy
-                    animator.SetBool("Run", false);
-                    MovingSet(false);
-                    OnAttack();
-                }
-                //else if (agent.speed == 0)
-                else if (aiPath.maxSpeed == 0)
-                {
-                    animator.SetBool("Run", true);
-                    MovingSet(true);
-                }
-
-                //if (agent.speed > 0 && targetsList != null)
-                if (aiPath.maxSpeed > 0 && targetsList != null)
-                {
-                    SetTarget(GetNeatestTarget());
-                    MoveToTargets();
-                }
-
-                if (!dontAttack)
-                    CheckForShooting();
-
-                Cooldown();
-
-                RotatingCreature();
-            }
+            BehaviorProcessing();
         }
     }
 
-    public new void MoveToTargets()
+    protected void BehaviorProcessing()
     {
-        /*
-         * Moving to targets
-         */
+        if (!IsDead())
+        {
+            if (targetsList == null || targetsList.Count == 0)
+                GetTargets();
+
+            if (canShoot)
+            {
+                animator.SetBool("Run", false);
+                MovingSet(false);
+                OnAttack();
+            }
+            else if (aiPath.maxSpeed == 0)
+            {
+                animator.SetBool("Run", true);
+                MovingSet(true);
+            }
+
+            if (aiPath.maxSpeed > 0 && targetsList != null)
+            {
+                SetTarget(GetNeatestTarget());
+                MoveToTargets();
+            }
+
+            if (!dontAttack)
+                CheckForShooting();
+
+            Cooldown();
+
+            RotatingCreature();
+        }
+    }
+    protected new void MoveToTargets()
+    {
         animator.SetBool("Run", true);
 
         proxy.position = model.position;
 
-        ///model.GetComponent<Rigidbody2D>().velocity = agent.velocity;
         model.GetComponent<Rigidbody2D>().velocity = rvoController.velocity;
 
     }
 
-    void CheckForShooting()
+    protected void CheckForShooting() 
     {
         if (target == null || Vector2.Distance(gameObject.transform.position, target.position) >= shootingRange)
             canShoot = false;
@@ -95,7 +88,7 @@ public class SimpleRangerMob : Mob
         }
     }
 
-    new void OnAttack()
+    public new void OnAttack()
     {
         if (timeBtwAttack <= 0)
         {
@@ -105,11 +98,8 @@ public class SimpleRangerMob : Mob
     }
 
     //create bullet with velocity
-    void AfterShoot()
+    public void AfterShoot()
     {
-        //audioSource.clip = bitSound;
-        //audioSource.Play();
-        //GameObject newBullet = Instantiate(Resources.Load<GameObject>(bulletPath), placeForShoot.position, Quaternion.identity);
         GameObject newBullet = Instantiate(Resources.Load<GameObject>("Ammo/" + ammoType.ToString()), placeForShoot.position, transform.rotation);
         newBullet.GetComponent<AmmoHandler>().SetDamage(attackDamage);
         newBullet.tag = gameObject.tag + "Ammo";
@@ -121,12 +111,12 @@ public class SimpleRangerMob : Mob
         newBullet.GetComponent<AmmoHandler>().CalculatePathAndFollow();
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         //nothing for simple ranger
     }
 
-    void OnTriggerExit2D(Collider2D collider)
+    private void OnTriggerExit2D(Collider2D collider)
     {
         //nothing for simple ranger
     }

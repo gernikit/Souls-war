@@ -1,19 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LineTesting : MonoBehaviour
 {
-    public LineRenderer lr;
+    [SerializeField]
+    private LineRenderer lr;
 
-    public GameObject pointA;
-    public GameObject pointB;
+    [SerializeField]
+    private GameObject pointA;
+    [SerializeField]
+    private GameObject pointB;
 
+    [SerializeField]
     [Range(0, 1)]
-    public float distanceAlongLine;
+    private float distanceAlongLine;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         // to make it show up
         lr = gameObject.AddComponent<LineRenderer>();
@@ -21,7 +23,7 @@ public class LineTesting : MonoBehaviour
         lr.startWidth = 1f;
     }
 
-    void Update()
+    private void Update()
     {
         // work out the point along the line
         Vector3 pointOnLine = pointA.transform.position + ((pointB.transform.position - pointA.transform.position) * distanceAlongLine);
@@ -29,12 +31,6 @@ public class LineTesting : MonoBehaviour
         // work out the sides
         // vector B-C in your diagram
         Vector3 side1 = pointB.transform.position - pointA.transform.position;
-        // into/outof the 2d plane
-        Vector3 side2 = new Vector3 (0, 0, 1);
-
-        // get the perpendicular direction
-        //Vector3 normalDirection = Vector3.Cross(side1, side2).normalized;
-        //Vector3 normalDirection = side1.normalized;
 
         Vector3 normalDirection;
 

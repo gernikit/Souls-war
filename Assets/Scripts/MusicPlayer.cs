@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
@@ -12,23 +10,21 @@ public class MusicPlayer : MonoBehaviour
     static float defaultVolume;
 
     [SerializeField]
-    AudioClip[] levelMusicsTemp;
+    private AudioClip[] levelMusicsTemp;
     static AudioClip[] levelMusics;
     [SerializeField]
-    AudioClip[] levelWinTemp;
+    private AudioClip[] levelWinTemp;
     static AudioClip[] levelWin;
     [SerializeField]
-    AudioClip[] levelLoseTemp;
+    private AudioClip[] levelLoseTemp;
     static AudioClip[] levelLose;
 
     static bool fadeTransition = false;
 
     [SerializeField]
-    static float fadeSpeed = 5f;//0.009f
+    static float fadeSpeed = 5f;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
         levelLose = levelLoseTemp;
@@ -39,24 +35,16 @@ public class MusicPlayer : MonoBehaviour
         PlayLevelMusic(rnd.Next(0, levelMusics.Length));
         defaultVolume = audioSource.volume;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (fadeTransition)
             OnFadeTransition();
     }
 
-    void PlayLevelMusic(int index)
-    {
-        audioSource.clip = levelMusics[index];
-        audioSource.Play();
-    }
-
     public static void PlayWinMusic()
     {
         System.Random rnd = new System.Random();
-        nextClip = levelWin[rnd.Next(0, levelLose.Length)];
+        nextClip = levelWin[rnd.Next(0, levelWin.Length)];
         fadeTransition = true;
     }
 
@@ -67,14 +55,10 @@ public class MusicPlayer : MonoBehaviour
         fadeTransition = true;
     }
 
-    static void FadeIn()
+    private void PlayLevelMusic(int index)
     {
-        audioSource.volume = Mathf.Clamp(audioSource.volume + fadeSpeed, 0.1f, defaultVolume);
-    }
-
-    static void FadeOut()
-    {
-        audioSource.volume = Mathf.Clamp(audioSource.volume - fadeSpeed, 0.1f, defaultVolume);
+        audioSource.clip = levelMusics[index];
+        audioSource.Play();
     }
 
     static void OnFadeTransition()
@@ -94,6 +78,14 @@ public class MusicPlayer : MonoBehaviour
             if (audioSource.volume >= defaultVolume)
                 fadeTransition = false;
         }
+    }
+    static void FadeIn()
+    {
+        audioSource.volume = Mathf.Clamp(audioSource.volume + fadeSpeed, 0.1f, defaultVolume);
+    }
 
+    static void FadeOut()
+    {
+        audioSource.volume = Mathf.Clamp(audioSource.volume - fadeSpeed, 0.1f, defaultVolume);
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,89 +5,76 @@ public class SimpleMeleeMob : Mob
 {
 
     [Header("Melee parameters")]
-    public int targetsCount;
-    List<Collider2D> closeEnemyColliders;
-    CircleCollider2D circleCollider;
+    [SerializeField]
+    protected int targetsCount;
+    protected List<Collider2D> closeEnemyColliders;
+    protected CircleCollider2D circleCollider;
 
-    void InitSimpleMelee()
-    {
-        circleCollider = gameObject.GetComponent<CircleCollider2D>();
-        closeEnemyColliders = new List<Collider2D>();
-        circleCollider.isTrigger = true;
-        //circleCollider.radius = attackRange;
-    }
-    void Start()
+    private void Start()
     {
         Init();
         InitSimpleMelee();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (gameIsStop)
+        if (!gameIsStop)
         {
-        }
-        else
-        {
-            if (!IsDead())
-            {
-                if (targetsList == null || targetsList.Count == 0)
-                    GetTargets();
-                Cooldown();
-                if (closeEnemyColliders.Count > 0)
-                {
-                    //proxy.position = model.position; // do it because OFFSET POS proxy
-                    OnAttack();
-                }
-
-                //if (agent.speed > 0 && targetsList != null)
-                if (aiPath.maxSpeed > 0 && targetsList != null)
-                {
-                    if (WinConditionalHandler.winningConditional == WinConditionalHandler.WinConditional.Defence && tag != "Player" && WinConditionalHandler.onlyMovingToTarget)
-                        SetTarget(GetCloseatestDefenceTarget());
-                    else
-                        SetTarget(GetNeatestTarget());
-                    MoveToTargets();
-                }
-               RotatingCreature();
-            }
+            BehaviorProcessing();
         }
     }
 
-    public new void MoveToTargets()
+    protected void BehaviorProcessing()
     {
-        /*
-         * Moving to targets
-         */
+        if (!IsDead())
+        {
+            if (targetsList == null || targetsList.Count == 0)
+                GetTargets();
+            Cooldown();
+            if (closeEnemyColliders.Count > 0)
+                OnAttack();
+
+            if (aiPath.maxSpeed > 0 && targetsList != null)
+            {
+                if (WinConditionalHandler.winningConditional == WinConditionalHandler.WinConditional.Defence && tag != "Player" && WinConditionalHandler.onlyMovingToTarget)
+                    SetTarget(GetCloseatestDefenceTarget());
+                else
+                    SetTarget(GetNeatestTarget());
+                MoveToTargets();
+            }
+            RotatingCreature();
+        }
+    }
+
+    protected void InitSimpleMelee()
+    {
+        circleCollider = gameObject.GetComponent<CircleCollider2D>();
+        closeEnemyColliders = new List<Collider2D>();
+        circleCollider.isTrigger = true;
+    }
+    protected new void MoveToTargets()
+    {
         animator.SetBool("Run", true);
 
         proxy.position = model.position;
 
-        //model.GetComponent<Rigidbody2D>().velocity = agent.velocity;
         model.GetComponent<Rigidbody2D>().velocity = rvoController.velocity;
-
     }
 
     public void AfterAttack()
     {
         for (int i = 0; i < targetsCount && i < closeEnemyColliders.Count; i++)
         {
-            //audioSource.clip = bitSound;
-            //audioSource.Play();
             if (closeEnemyColliders.Count > 0 && closeEnemyColliders[i] != null && !closeEnemyColliders[i].GetComponent<Mob>().IsDead())
                 closeEnemyColliders[i].GetComponent<Mob>().TakeDamage(attackDamage);
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         if (dontAttack)
             return;
-        /*
-        if (collider.gameObject.layer == 6) //Mobs
-            MovingSet(false);
-        */
+
         switch (gameObject.tag)
         {
             case "Enemy":
@@ -97,7 +83,7 @@ public class SimpleMeleeMob : Mob
                     {
                         List<Collider2D> collider2Ds = new List<Collider2D>();
                         circleCollider.OverlapCollider(new ContactFilter2D().NoFilter(), collider2Ds);
-                        if (!collider.Distance(circleCollider).isOverlapped)//if (!collider2Ds.Contains(collider))
+                        if (!collider.Distance(circleCollider).isOverlapped)
                             return;
                         collider2Ds.Clear();
 
@@ -111,10 +97,9 @@ public class SimpleMeleeMob : Mob
                 {
                     if (collider.tag == "Enemy" && collider is CapsuleCollider2D)
                     {
-                        //collider.Distance ???
                         List<Collider2D> collider2Ds = new List<Collider2D>();
                         circleCollider.OverlapCollider(new ContactFilter2D().NoFilter(), collider2Ds);
-                        if (!collider.Distance(circleCollider).isOverlapped) //if (!collider2Ds.Contains(collider))
+                        if (!collider.Distance(circleCollider).isOverlapped)
                             return;
                         collider2Ds.Clear();
 
@@ -127,7 +112,7 @@ public class SimpleMeleeMob : Mob
         }
     }
 
-    void OnTriggerExit2D(Collider2D collider)
+    private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider is CapsuleCollider2D && collider.gameObject.layer == 6) /*Mobs*/
         {
@@ -137,8 +122,6 @@ public class SimpleMeleeMob : Mob
                     {
                         if (collider.tag == "Player")
                         {
-                            //if (collider.GetComponent<Mob>().IsDead())
-                            //targetsList.Remove(collider.gameObject);
                             closeEnemyColliders.Remove(collider);
                             if (closeEnemyColliders.Count == 0)
                                 MovingSet(true);
@@ -149,8 +132,6 @@ public class SimpleMeleeMob : Mob
                     {
                         if (collider.tag == "Enemy")
                         {
-                            //if (collider.GetComponent<Mob>().IsDead())
-                            //targetsList.Remove(collider.gameObject);
                             closeEnemyColliders.Remove(collider);
                             if (closeEnemyColliders.Count == 0)
                                 MovingSet(true);

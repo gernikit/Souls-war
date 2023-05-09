@@ -50,6 +50,7 @@ public class LevelUnlockMobs
         {
             foreach (TypeOfMob elem in System.Enum.GetValues(typeof(TypeOfMob)))
             {
+                //better to use switch operator
                 if (elem == TypeOfMob.Peasant)
                 {
                     levelUnlock.Add(1);
@@ -86,8 +87,8 @@ public class LevelUnlockMobs
 }
 public class GlossaryMobs
 {
-    public List<TypeOfMob> typeOfMobs;
-    public List<bool> typeOfMobsAvailable;
+    private List<TypeOfMob> typeOfMobs;
+    private List<bool> typeOfMobsAvailable;
 
     public bool this[TypeOfMob el]
     {
@@ -118,14 +119,17 @@ public class GlossaryMobs
 }
 public class GlossaryHandler : MonoBehaviour
 {
-    public GameObject informationWindow;//must be set in inspector!!!
-    public GameObject mobsGridWindow;//must be set in inspector!!!
-    public GameObject contentOfMobs;//must be set in inspector!!!
+    [SerializeField]
+    private GameObject informationWindow;//must be set in inspector!!!
+    [SerializeField]
+    private GameObject mobsGridWindow;//must be set in inspector!!!
+    [SerializeField]
+    private GameObject contentOfMobs;//must be set in inspector!!!
 
-    public GlossaryMobs glossaryMobs;
-    public LevelUnlockMobs levelUnlockMobs;
+    private GlossaryMobs glossaryMobs;
+    private LevelUnlockMobs levelUnlockMobs;
 
-    bool updatedAvailableMobs = false;
+    private bool updatedAvailableMobs = false;
 
     private void Start()
     {
@@ -148,22 +152,19 @@ public class GlossaryHandler : MonoBehaviour
             return;
         }
 
-        //TypeOfMob activeType = (TypeOfMob)System.Enum.Parse(typeof(TypeOfMob), type);
-
         informationWindow.GetComponent<InformationWinHandler>().LoadInfoForMob(type);
-        //do something with info
 
         mobsGridWindow.SetActive(false);
         informationWindow.SetActive(true);
     }
 
-    public void OnShowGrid()
+    private void OnShowGrid()
     {
         mobsGridWindow.SetActive(true);
         informationWindow.SetActive(false);
     }
 
-    public void ConfigurateAvailableMobs()//needed all names MOBS!!!!
+    private void ConfigurateAvailableMobs()//need all names MOBS!!!!
     {
         foreach (TypeOfMob elem in System.Enum.GetValues(typeof(TypeOfMob)))
         {
@@ -178,11 +179,10 @@ public class GlossaryHandler : MonoBehaviour
 
         foreach (TypeOfMob elem in System.Enum.GetValues(typeof(TypeOfMob)))
         {
-
             if (elem == TypeOfMob.All || elem == TypeOfMob.None)
                 continue;
 
-            if (glossaryMobs.typeOfMobsAvailable[glossaryMobs.typeOfMobs.IndexOf(elem)])
+            if (glossaryMobs[elem])
                 contentOfMobs.transform.Find(elem.ToString()).gameObject.SetActive(true);
             else
                 contentOfMobs.transform.Find(elem.ToString()).gameObject.SetActive(false);

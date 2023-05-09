@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ public class RestartLevelData : ScriptableObject
     public List<string> tagMobs;
     public int countOfMoney;
 
-    RestartLevelData()
+    public RestartLevelData()
     {
         countOfMobs = new Dictionary<TypeOfMob, int>();
         posMobs = new List<Vector2>();

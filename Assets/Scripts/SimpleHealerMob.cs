@@ -1,89 +1,89 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SimpleHealerMob : Mob
 {
     protected bool canHeal = false;
-    [SerializeField]
-    CircleCollider2D auraCollider;//must be set in inspector!!!
 
-    List<Mob> closestAllyTargets;//maybe remove for closestAllyTargetsNoMaxHP
-    List<Mob> closestAllyTargetsNoMaxHP;
+    [SerializeField]
+    protected CircleCollider2D auraCollider;//must be set in inspector!!!
+
+    protected List<Mob> closestAllyTargets;//maybe remove for closestAllyTargetsNoMaxHP
+    protected List<Mob> closestAllyTargetsNoMaxHP;
     protected bool noAllyNearby = false;
 
     [Header("Healer")]
-    public float healingValue = 6f;
-    public float distanceToClosestAlly = 5f;//must be less than radiusHealing
-    public float radiusHealingAura = 7f;
-    //public float healingRange = 10f;
-    public int minHealingTargets = 3;
-    public int maxHealingTargets = 5;
+    [SerializeField]
+    protected float healingValue = 6f;
+    [SerializeField]
+    protected float distanceToClosestAlly = 5f;//must be less than radiusHealing
+    [SerializeField]
+    protected float radiusHealingAura = 7f;
+    [SerializeField]
+    protected int minHealingTargets = 3;
+    [SerializeField]
+    protected int maxHealingTargets = 5;
 
-    void Start()
+    private void Start()
     {
         Init();
         InitSimpleHealer();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (gameIsStop)
+        if (!gameIsStop)
         {
+            BehaviorProcessing();
         }
-        else
+    }
+
+    protected void BehaviorProcessing()
+    {
+        if (!IsDead())
         {
-            if (!IsDead())
+            if (targetsList == null || targetsList.Count == 0)
+                GetTargets();
+
+            if (canHeal)
             {
-                if (targetsList == null || targetsList.Count == 0)
-                    GetTargets();
-
-                if (canHeal)
-                {
-                    //proxy.position = model.position; // do it because OFFSET POS proxy
-                    animator.SetBool("Run", false);
-                    MovingSet(false);
-                    if (GetNoMaxHPTargets() && !noAllyNearby)
-                        ChoseKindOfHealing();
-                    else if (noAllyNearby)
-                        HealAttack();
-                    //OnAttack(); //HEALING
-                }
-                //else if (agent.speed == 0)
-                else if (aiPath.maxSpeed == 0)
-                {
-                    animator.SetBool("Run", true);
-                    MovingSet(true);
-                }
-
-                //if (agent.speed > 0 && targetsList != null)
-                if (aiPath.maxSpeed > 0 && (allyTargetsList != null || targetsList != null))
-                {
-                    System.Func<Mob, bool> conditional = mob => mob.typeOfMob != TypeOfMob.Healer;
-                    Transform tar = GetCloseatestAllyTarget(conditional);
-                    //Debug.Log("pos =" + tar.position + "!name = " + gameObject.transform.parent.name);
-                    if (tar != null)
-                    {
-                        noAllyNearby = false;
-                        SetTarget(tar);
-                    }
-                    else
-                    {
-                        noAllyNearby = true;
-                        SetTarget(GetNeatestTarget());
-                    }
-
-                    MoveToTargets();
-                }
-
-                if (!dontAttack)
-                    CheckingForHeal();
-
-                Cooldown();
-
-                RotatingCreature();
+                animator.SetBool("Run", false);
+                MovingSet(false);
+                if (GetNoMaxHPTargets() && !noAllyNearby)
+                    ChoseKindOfHealing();
+                else if (noAllyNearby)
+                    HealAttack();
             }
+            else if (aiPath.maxSpeed == 0)
+            {
+                animator.SetBool("Run", true);
+                MovingSet(true);
+            }
+
+            if (aiPath.maxSpeed > 0 && (allyTargetsList != null || targetsList != null))
+            {
+                System.Func<Mob, bool> conditional = mob => mob.TypeOfMob != TypeOfMob.Healer;
+                Transform tar = GetCloseatestAllyTarget(conditional);
+                if (tar != null)
+                {
+                    noAllyNearby = false;
+                    SetTarget(tar);
+                }
+                else
+                {
+                    noAllyNearby = true;
+                    SetTarget(GetNeatestTarget());
+                }
+
+                MoveToTargets();
+            }
+
+            if (!dontAttack)
+                CheckingForHeal();
+
+            Cooldown();
+
+            RotatingCreature();
         }
     }
 
@@ -91,7 +91,6 @@ public class SimpleHealerMob : Mob
     {
         closestAllyTargets = new List<Mob>();
         closestAllyTargetsNoMaxHP = new List<Mob>();
-        //attackDamage = 1;
 
         if (auraCollider == null)
             Debug.LogError("Healing aura not init!!!");
@@ -101,14 +100,10 @@ public class SimpleHealerMob : Mob
 
     public new void MoveToTargets()
     {
-        /*
-         * Moving to targets
-         */
         animator.SetBool("Run", true);
 
         proxy.position = model.position;
 
-        //model.GetComponent<Rigidbody2D>().velocity = agent.velocity;
         model.GetComponent<Rigidbody2D>().velocity = rvoController.velocity;
 
     }
@@ -173,30 +168,30 @@ public class SimpleHealerMob : Mob
     {
         Mob mob;
         mob = mobs[mobs.Count - 1];
-        float lowestHp = mob.maxHealth - mob.health;
+        float lowestHp = mob.MaxHealth - mob.Health;
         foreach (Mob el in mobs)
         {
-            if (lowestHp < el.maxHealth - el.health)
+            if (lowestHp < el.MaxHealth - el.Health)
             {
-                lowestHp = el.maxHealth - el.health;
+                lowestHp = el.MaxHealth - el.Health;
                 mob = el;  
             }
         }
         return mob;
     }
 
-    void OnTriggerEnter2D(Collider2D collider)//dont work with losestAllyTargetsNoMaxHP because not updating!!!
+    private void OnTriggerEnter2D(Collider2D collider)//dont work with losestAllyTargetsNoMaxHP because not updating!!!
     {
         if (collider.tag == gameObject.tag &&
             collider.gameObject.layer == 6 &&
             !closestAllyTargets.Contains(collider.gameObject.GetComponent<Mob>()) &&
-            collider.gameObject.GetComponent<Mob>().typeOfMob != TypeOfMob.Healer)//no heals another healers
+            collider.gameObject.GetComponent<Mob>().TypeOfMob != TypeOfMob.Healer)//no heals another healers
         {
             closestAllyTargets.Add(collider.gameObject.GetComponent<Mob>());
         }
     }
 
-    void OnTriggerExit2D(Collider2D collider)
+    private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.tag == gameObject.tag && collider.gameObject.layer == 6)
         {

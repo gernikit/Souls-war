@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,18 +8,12 @@ public class MainCanvasHandler : MonoBehaviour
     [SerializeField]
     GameObject showOrHideBut;//must be set in inspector
 
-    bool showedInterface = true;
-    float startPosY = 0;
+    private bool showedInterface = true;
+    private float startPosY = 0;
 
-    void Start()
+    private void Start()
     {
         startPosY = Interface.transform.position.y;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnHideOrShowInterface()

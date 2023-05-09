@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using I2.Loc;
-using UnityEditor;
 using UnityEngine.UI;
 
 public class MainMenuHandler : MonoBehaviour
 {
-    public GameObject mainMenu;
-    public GameObject options;
-    public GameObject chooseLevels;
-    public GameObject arena;
-    public GameObject glossary;
-    public GameObject volumeSlider;
+    [SerializeField]
+    private GameObject mainMenu;
+    [SerializeField]
+    private GameObject options;
+    [SerializeField]
+    private GameObject chooseLevels;
+    [SerializeField]
+    private GameObject arena;
+    [SerializeField]
+    private GameObject glossary;
+    [SerializeField]
+    private GameObject volumeSlider;
 
-    bool loadOptions = false;
+    private bool loadOptions = false;
 
 
     void Start()
@@ -23,7 +25,6 @@ public class MainMenuHandler : MonoBehaviour
         OnMainMenuShow();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!loadOptions)

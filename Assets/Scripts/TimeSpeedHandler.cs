@@ -1,28 +1,24 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TimeSpeedHandler : MonoBehaviour
 {
-    List<float> speedList;
+    private List<float> speedList;
     [SerializeField]
-    Text X2Button; //must be set in inspector!!!
-    int currentSpeed = 0;
-    // Start is called before the first frame update
-    void Start()
+    private Text X2Button; //must be set in inspector!!!
+    private int currentSpeed = 0;
+    private void Start()
     {
         InitSpeedList();
         X2Button.text = "X" + speedList[currentSpeed].ToString();
     }
-
-    // Update is called once per frame
-    void Update()
+    public float GetCurrentSpeed()
     {
-        
+        return speedList[currentSpeed];
     }
 
-    void InitSpeedList()
+    private void InitSpeedList()
     {
         speedList = new List<float>();
         speedList.Add(1);
@@ -37,10 +33,5 @@ public class TimeSpeedHandler : MonoBehaviour
 
         Time.timeScale = speedList[currentSpeed];
         X2Button.text = "X" + speedList[currentSpeed].ToString();
-    }
-
-    public float GetCurrentSpeed()
-    {
-        return speedList[currentSpeed];
     }
 }

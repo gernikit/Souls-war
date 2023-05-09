@@ -5,15 +5,15 @@ using Pathfinding;
 
 public static class MobTargets
 {
-    //needed to find targets
-    public static List<GameObject> targetsListPlayer; //with null!!!!
-    public static List<GameObject> targetsListEnemy;  //with null!!!!
+    //need to find targets
+    public static List<GameObject> targetsListPlayer; //can contain nulls!!!!
+    public static List<GameObject> targetsListEnemy;  //can contain nulls!!!!
 
-    //needed to check win conditionals
+    //need to check win conditionals
     public static List<GameObject> mobsPlayer;
     public static List<GameObject> mobsEnemy;
 
-    //needed to check healers (for fight)
+    //need to check healers targets(for fight)
     public static Dictionary<TypeOfMob, int> countMobsOfTypePlayer;
     public static Dictionary<TypeOfMob, int> countMobsOfTypeEnemy;
 
@@ -28,45 +28,21 @@ public static class MobTargets
         countMobsOfTypeEnemy = new Dictionary<TypeOfMob, int>();
         foreach (GameObject el in mobsEnemy)
         {
-            if (!countMobsOfTypeEnemy.ContainsKey(el.GetComponent<Mob>().typeOfMob))
-                countMobsOfTypeEnemy[el.GetComponent<Mob>().typeOfMob] = 1;
+            if (!countMobsOfTypeEnemy.ContainsKey(el.GetComponent<Mob>().TypeOfMob))
+                countMobsOfTypeEnemy[el.GetComponent<Mob>().TypeOfMob] = 1;
             else
-                countMobsOfTypeEnemy[el.GetComponent<Mob>().typeOfMob]++;
+                countMobsOfTypeEnemy[el.GetComponent<Mob>().TypeOfMob]++;
         }
 
         countMobsOfTypePlayer = new Dictionary<TypeOfMob, int>();
         foreach (GameObject el in mobsPlayer)
         {
-            if (!countMobsOfTypePlayer.ContainsKey(el.GetComponent<Mob>().typeOfMob))
-                countMobsOfTypePlayer[el.GetComponent<Mob>().typeOfMob] = 1;
+            if (!countMobsOfTypePlayer.ContainsKey(el.GetComponent<Mob>().TypeOfMob))
+                countMobsOfTypePlayer[el.GetComponent<Mob>().TypeOfMob] = 1;
             else
-                countMobsOfTypePlayer[el.GetComponent<Mob>().typeOfMob]++;
+                countMobsOfTypePlayer[el.GetComponent<Mob>().TypeOfMob]++;
         }
     }
-
-    /*
-    static public int GetNotNullMobsCount(bool IsPlayerList)
-    {
-        int count = 0;
-        if (IsPlayerList == true)
-        {
-            for (int i = 0; i < targetsListEnemy.Count; i++)
-            {
-                if (targetsListEnemy[i] != null)
-                    count++;
-            }
-        }
-        else
-        {
-            for (int i = 0; i < targetsListPlayer.Count; i++)
-            {
-                if (targetsListPlayer[i] != null)
-                    count++;
-            }
-        }
-        return count;
-    }
-    */
 }
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -75,16 +51,6 @@ public static class MobTargets
 
 public class Mob : MonoBehaviour
 {
-    //script is child in hierarchy!!!
-    /*
-    public enum AnimatorEvent
-    {
-        Bool,
-        Trigger,
-        Int,
-        Float
-    }
-    */
     static public bool gameIsStop = true;
 
     protected List<GameObject> targetsList;
@@ -94,41 +60,53 @@ public class Mob : MonoBehaviour
     protected AIDestinationSetter aiDestinationSetter;
     protected AIPath aiPath;
     protected DynamicGridObstacle dynamicGridObstacle;
-    ///protected NavMeshAgent agent;
-    ///protected NavMeshObstacle agentObstavle;
-    ///
-    protected AudioSource audioSource;
+
     [SerializeField]
     protected AudioClip bitSound;
+    protected AudioSource audioSource;
 
     [Header("Mob parameters")]
-    public float health = 10;
-    [HideInInspector]
-    public float maxHealth = 0f;
-    public float attackDamage = 1;
-    public float firstSpeed = 1f;
-    //public float aiPath.maxSpeed;
-    public float startTimeBtwAttack = 4f;
+    [SerializeField]
+    protected float health = 10;
+    protected float maxHealth = 0f;
+    [SerializeField]
+    protected float attackDamage = 1;
+    [SerializeField]
+    protected float firstSpeed = 1f;
+    [SerializeField]
+    protected float startTimeBtwAttack = 4f;
     protected float timeBtwAttack = 0f;
-    //public float attackRange = 0.5f;
-    public bool watchRight = true;
+    [SerializeField]
+    protected bool watchRight = true;
+    [SerializeField]
     [Range(0f, 1f)]
-    public float allDamageResistance = 0f;
-    public TypeOfMob typeOfMob;
+    protected float allDamageResistance = 0f;
+    [SerializeField]
+    protected TypeOfMob typeOfMob;
 
     [Header("Mob special options")]
-    public bool dontAttack = false;
+    [SerializeField]
+    protected bool dontAttack = false;
 
     [Header("Parent-child property")]
-    public GameObject headObject;
-    public Transform target;
-    public Transform model;
-    public Transform proxy;
+    [SerializeField]
+    protected GameObject headObject;// must be set in inspector
+    [SerializeField]
+    protected Transform target;
+    [SerializeField]
+    protected Transform model;// must be set in inspector
+    [SerializeField]
+    protected Transform proxy;// must be set in inspector
 
     [Header("Model")]
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
     protected CapsuleCollider2D capsuleCollider;            
     protected Animator animator;
+    protected void Start()
+    {
+        Init();
+        gameObject.layer = 6; /*Mobs*/
+    }
 
     public static void OnStart()
     {
@@ -140,25 +118,16 @@ public class Mob : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         capsuleCollider = gameObject.GetComponent<CapsuleCollider2D>();
 
-        //animator = gameObject.GetComponent<Animator>();
         rvoController = proxy.GetComponent<RVOController>();
         aiDestinationSetter = proxy.GetComponent<AIDestinationSetter>();
         aiPath = proxy.GetComponent<AIPath>();
         dynamicGridObstacle = proxy.GetComponent<DynamicGridObstacle>();
 
-        //agent = proxy.GetComponent<NavMeshAgent>();
-        //agentObstavle = proxy.GetComponent<NavMeshObstacle>();
         audioSource = GetComponent<AudioSource>();
         audioSource.playOnAwake = false;
 
         animator = gameObject.GetComponent<Animator>();
         capsuleCollider.isTrigger = true;
-        //rb.gravityScale = 0;
-        //rb.freezeRotation = true;
-        ///agentObstavle.enabled = false;
-        ///agent.updateRotation = false;
-        ///agent.updateUpAxis = false;
-        ///agent.speed = firstSpeed;
 
         if (gameObject.tag == "Enemy")
             SetOutline(Resources.Load<Material>("Outline/SpritesheetMaterial_Outline"));
@@ -167,103 +136,96 @@ public class Mob : MonoBehaviour
 
         headObject = gameObject.transform.parent.gameObject;
 
-        maxHealth = health;
+        MaxHealth = Health;
     }
 
     public void SetOutline(Material material)
     {
          gameObject.GetComponent<SpriteRenderer>().material = material;
     }
-    void Start()
-    {
-        Init();
-        //GetTargets();
-        gameObject.layer = 6; /*Mobs*/
 
+    public void TakeDamage(float damage)
+    {
+        damage *= (1 - allDamageResistance);
+        Health -= damage;
+        if (IsDead() && !animator.GetBool("IsDeath"))
+        {
+            animator.SetTrigger("Death");
+            animator.SetBool("IsDeath", true);
+        }
     }
 
-    void Update()
+    public void TakeHeal(float heal)
     {
-        
+        float lostHP = MaxHealth - Health;
+        if (lostHP < heal)
+            Health += lostHP;
+        else
+            Health += heal;
+        Instantiate(ParticleManager.particlesForMobs[ParticleTypesForMob.HealDone], gameObject.transform);//maybe hard for perfomance
     }
 
+    public void MovingSet(bool active)
+    {
+        if (!active)
+        {
+            aiPath.canSearch = false;
+            rvoController.velocity = new Vector3(0, 0);
+            aiPath.maxSpeed = 0;
+            rb.velocity = new Vector2(0, 0);
+
+            dynamicGridObstacle.enabled = true;
+            dynamicGridObstacle.gameObject.layer = 7;
+        }
+        else
+        {
+            aiPath.canSearch = true;
+            aiPath.maxSpeed = firstSpeed;
+
+            dynamicGridObstacle.enabled = false;
+            dynamicGridObstacle.gameObject.layer = 0;
+        }
+    }
     protected void GetTargets()
     {
         if (gameObject.tag == "Enemy")
         {
-            targetsList = MobTargets.targetsListEnemy;//new List<GameObject>(GameObject.FindGameObjectsWithTag("Player"));
+            targetsList = MobTargets.targetsListEnemy;
             allyTargetsList = MobTargets.targetsListPlayer;
         }
         else if (gameObject.tag == "Player")
         {
-            targetsList = MobTargets.targetsListPlayer;//new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+            targetsList = MobTargets.targetsListPlayer;
             allyTargetsList = MobTargets.targetsListEnemy;
         }
     }
 
-    public void SetTarget(Transform nearest)
+    protected void SetTarget(Transform nearest)
     {
-        //Transform nearest = GetNeatestTarget();
         target = nearest;
-
         aiDestinationSetter.target = target.transform;
-
-        //agent.SetDestination(target.position);
-        ///agent.destination = target.position;
     }
 
-    public void MoveToTargets()
+    protected void MoveToTargets()
     {
         /*
          * Moving to targets
          */
     }
 
-    /*
-    protected void EventForAnimator(AnimatorEvent mod, string nameValue, bool valueBool = false, int valueInt = 0, float valueFloat = 0f)
+    protected void RotatingCreature()
     {
-        switch (mod)
-        {
-            case (AnimatorEvent.Bool):
-                {
-                    animator.SetBool(nameValue, valueBool);
-                    break;
-                }
-            case (AnimatorEvent.Trigger):
-                {
-                    animator.SetTrigger(nameValue);
-                    break;
-                }
-            case (AnimatorEvent.Int):
-                {
-                    animator.SetInteger(nameValue, valueInt);
-                    break;
-                }
-            case (AnimatorEvent.Float):
-                {
-                    animator.SetFloat(nameValue, valueFloat);
-                    break;
-                }
-        }
-    }
-    */
-
-    public void RotatingCreature()
-    {
-        ///if (agent.velocity.x < -0.1)
         if (rvoController.velocity.x < -0.1)
         {
             transform.rotation = new Quaternion(transform.rotation.x, 180, transform.rotation.z, transform.rotation.w);
             watchRight = false;
         }
-        ///if (agent.velocity.x > 0.1)
-        if (rvoController.velocity.x > 0.1)
+        else if (rvoController.velocity.x > 0.1)
         {
             transform.rotation = new Quaternion(transform.rotation.x, 0, transform.rotation.z, transform.rotation.w);
             watchRight = true;
         }
 
-        ///if (agent.velocity.x < 0.5)
         if (rvoController.velocity.x < 0.5)
         {
             if (target != null)
@@ -277,33 +239,11 @@ public class Mob : MonoBehaviour
         }
     }
 
-    public void Cooldown()
+    protected void Cooldown()
     {
         if (timeBtwAttack > 0)
             timeBtwAttack -= Time.deltaTime;
     }
-
-    public void TakeDamage(float damage)
-    {
-        damage *= (1 - allDamageResistance);
-        health -= damage;
-        if (IsDead() && !animator.GetBool("IsDeath"))
-        {
-            animator.SetTrigger("Death");
-            animator.SetBool("IsDeath", true);
-        }
-    }
-
-    public void TakeHeal(float heal)
-    {
-        float lostHP = maxHealth - health;
-        if (lostHP < heal)
-            health += lostHP;
-        else
-            health += heal;
-        Instantiate(ParticleManager.particlesForMobs[ParticleTypesForMob.HealDone], gameObject.transform);//maybe hard for perfomance
-    }
-
     protected Transform GetNeatestTarget()
     {
         if (targetsList.Count > 0)
@@ -330,16 +270,6 @@ public class Mob : MonoBehaviour
                     }
                 }
             }
-            /*
-            foreach (GameObject el in targetsList)
-            {
-                if (Vector2.Distance(el.transform.position, gameObject.transform.position) <
-                    Vector2.Distance(nearest.transform.position, gameObject.transform.position))
-                {
-                    nearest = el;
-                }
-            }*/
-
             return nearest.transform;
         }
         else
@@ -388,7 +318,7 @@ public class Mob : MonoBehaviour
                 if (temp != gameObject)
                     nearest = allyTargetsList[i];
                 i++;
-            } while (nearest == null && i < allyTargetsList.Count);//?
+            } while (nearest == null && i < allyTargetsList.Count);//need more tests for that condition
 
             if (nearest == null)
                 return null;
@@ -494,7 +424,12 @@ public class Mob : MonoBehaviour
         else
             return null;
     }
-
+    
+    public TypeOfMob TypeOfMob { get => typeOfMob; set => typeOfMob = value; }
+    public float Health { get => health; set => health = value; }
+    public float MaxHealth { get => maxHealth; set => maxHealth = value; }
+    public bool IsDead() { return Health <= 0 ? true : false; }
+    public bool IsMaxHP() { return MaxHealth == Health; }
     //for attack
     public void OnAttack()
     {
@@ -511,67 +446,18 @@ public class Mob : MonoBehaviour
         audioSource.Play();
     }
 
-
     public void AfterDeath()
     {
         if (gameObject.tag == "Player")
         {
             MobTargets.mobsPlayer.Remove(gameObject);
-            MobTargets.countMobsOfTypePlayer[typeOfMob]--;
+            MobTargets.countMobsOfTypePlayer[TypeOfMob]--;
         }
         else if (gameObject.tag == "Enemy")
         {
             MobTargets.mobsEnemy.Remove(gameObject);
-            MobTargets.countMobsOfTypeEnemy[typeOfMob]--;
+            MobTargets.countMobsOfTypeEnemy[TypeOfMob]--;
         }
         Destroy(headObject);
     }
-
-    public void MovingSet(bool active)
-    {
-        if (!active)
-        {
-            ///agent.enabled = false;
-            ///agentObstavle.enabled = true;
-            ///agent.speed = 0;
-            aiPath.canSearch = false;
-            rvoController.velocity = new Vector3(0, 0);
-            aiPath.maxSpeed = 0;
-            rb.velocity = new Vector2(0, 0);
-
-            dynamicGridObstacle.enabled = true;
-            dynamicGridObstacle.gameObject.layer = 7;
-
-            //rb.freezeRotation = true;
-            //rb.velocity = new Vector2(0, 0);
-
-            //rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
-        else
-        {
-            ///agentObstavle.enabled = false;
-            ///agent.enabled = true;
-            ///agent.speed = firstSpeed;
-            aiPath.canSearch = true;
-            aiPath.maxSpeed = firstSpeed;
-
-            dynamicGridObstacle.enabled = false;
-            dynamicGridObstacle.gameObject.layer = 0;
-
-            //rb.freezeRotation = false;
-
-            //rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
-    }
-
-    public bool IsDead()
-    {
-        return health <= 0 ? true : false;
-    }
-
-    public bool IsMaxHP()
-    {
-        return maxHealth == health;
-    }
-
 }

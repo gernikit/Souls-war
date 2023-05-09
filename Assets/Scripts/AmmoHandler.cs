@@ -29,6 +29,17 @@ public class AmmoHandler : MonoBehaviour
         Init();
     }
 
+    private void Update()
+    {
+        if (targetPos != null && ammoType == AmmoType.None)
+        {
+            Debug.LogError("Ammo Type = None");
+            return;
+        }
+        CheckForDestroy();
+
+    }
+
     private void Init()
     {
         ammoCollider = gameObject.GetComponent<PolygonCollider2D>();
@@ -40,15 +51,41 @@ public class AmmoHandler : MonoBehaviour
     }
 
 
-    private void Update()
+    public void CalculatePathAndFollow()
     {
-        if (targetPos != null && ammoType == AmmoType.None)
-        {
-            Debug.LogError("Ammo Type = None");
-            return;
-        }
-        CheckForDestroy();
+        if (targetPos == null)
+            Destroy(gameObject);
+        StartCoroutine(FollowBezierPath());
+    }
 
+    public void SetAmmoType(AmmoType type)
+    {
+        ammoType = type;
+    }
+    public void SetOffsetBezier(float offset)
+    {
+        offsetBezier = offset;
+    }
+
+    public void SetSpeed(float speedAmmo)
+    {
+        speed = speedAmmo;
+    }
+
+    public void SetDamage(float dam)
+    {
+        damage = dam;
+    }
+    public void SetMaxDistance(float distance)
+    {
+        maxDistanceBetween = distance;
+    }
+    public void SetTarget(Vector2 tar)
+    {
+        minY = gameObject.transform.position.y;
+        targetPos = tar;
+        if (minY > tar.y)
+            minY = tar.y;
     }
 
     private IEnumerator FollowBezierPath()
@@ -95,51 +132,14 @@ public class AmmoHandler : MonoBehaviour
         }
     }
 
-    public void CalculatePathAndFollow()
-    {
-        if (targetPos == null)
-            Destroy(gameObject);
-        StartCoroutine(FollowBezierPath());
-    }
-
-    public void SetAmmoType(AmmoType type)
-    {
-        ammoType = type;
-    }
-    public void SetOffsetBezier(float offset)
-    {
-        offsetBezier = offset;
-    }
-
-    public void SetSpeed(float speedAmmo)
-    {
-        speed = speedAmmo;
-    }
-
-    public void SetDamage(float dam)
-    {
-        damage = dam;
-    }
-    public void SetMaxDistance(float distance)
-    {
-        maxDistanceBetween = distance;
-    }
-    public void SetTarget(Vector2 tar)
-    {
-        minY = gameObject.transform.position.y;
-        targetPos = tar;
-        if (minY > tar.y)
-            minY = tar.y;
-    }
-
-    void RotateAmmoByMovement(Vector2 relativePos)
+    private void RotateAmmoByMovement(Vector2 relativePos)
     {
         float angle = Mathf.Atan2(relativePos.y, relativePos.x) * Mathf.Rad2Deg;
         Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);//???
     }
 
-    void CheckForDestroy()
+    private void CheckForDestroy()
     {
         if (Vector2.Distance(gameObject.transform.position, targetPos) < 0.01)
         {
@@ -149,7 +149,7 @@ public class AmmoHandler : MonoBehaviour
         }
     }
 
-    void DealDamage(Collider2D collider)
+    private void DealDamage(Collider2D collider)
     {
         if (speed != 0)
         {
@@ -159,12 +159,12 @@ public class AmmoHandler : MonoBehaviour
         }
     }
 
-    void AfterDestroy()
+    private void AfterDestroy()
     {
         Destroy(gameObject);
     }
 
-    void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         if (damage == 0)
             Debug.LogError("Damage == 0");
@@ -175,7 +175,7 @@ public class AmmoHandler : MonoBehaviour
                 {
                     if (collider.tag == "Player" && collider is CapsuleCollider2D)
                     {
-                        if (!collider.Distance(ammoCollider).isOverlapped)//if (!collider2Ds.Contains(collider))
+                        if (!collider.Distance(ammoCollider).isOverlapped)
                             return;
 
                         DealDamage(collider);
@@ -186,7 +186,7 @@ public class AmmoHandler : MonoBehaviour
                 {
                     if (collider.tag == "Enemy" && collider is CapsuleCollider2D)
                     {
-                        if (!collider.Distance(ammoCollider).isOverlapped) //if (!collider2Ds.Contains(collider))
+                        if (!collider.Distance(ammoCollider).isOverlapped)
                             return;
 
                        DealDamage(collider);

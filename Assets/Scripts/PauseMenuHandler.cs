@@ -1,30 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenuHandler : MonoBehaviour
 {
-    bool pause = false;
+    [SerializeField]
+    private GameObject pauseMenuElements; //must be set in inspector!!!
+    [SerializeField]
+    private GameObject otherElements;    //must be set in inspector!!!
+    [SerializeField]
+    private GameObject pauseMenuButton; //must be set in inspector!!!
+    [SerializeField]
+    private Button restartButton;//must be set in inspector!!!
+    [SerializeField]
+    private GameObject X2Button; //must be set in inspector!!!
 
-    public GameObject pauseMenuElements; //must be set in inspector!!!
-    public GameObject otherElements;    //must be set in inspector!!!
-    public GameObject pauseMenuButton; //must be set in inspector!!!
-    public Button restartButton;//must be set in inspector!!!
-    public GameObject X2Button; //must be set in inspector!!!
+    private bool pause = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    public void PauseGame()
+    private void PauseGame()
     {
         pause = !pause;
         if (pause)

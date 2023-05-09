@@ -1,24 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StartGame : MonoBehaviour
 {
-    public GameObject elementsForHide; //must be set in inspector!!!
-    public GameObject scrollOfCreation; //must be set in inspector!!!
-    public GameObject availableZone;//must be set in inspector!!!
-    public GameObject X2Button;//must be set in inspector!!!
-    public GameObject dungerousMark;//must be set in inspector!!!
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField]
+    private GameObject elementsForHide; //must be set in inspector!!!
+    [SerializeField]
+    private GameObject scrollOfCreation; //must be set in inspector!!!
+    [SerializeField]
+    private GameObject availableZone;//must be set in inspector!!!
+    [SerializeField]
+    private GameObject X2Button;//must be set in inspector!!!
+    [SerializeField]
+    private GameObject dungerousMark;//must be set in inspector!!!
 
     public void OnStart()
     {
@@ -37,6 +30,5 @@ public class StartGame : MonoBehaviour
         elementsForHide.SetActive(false);
 
         dungerousMark.SetActive(false);
-
     }
 }

@@ -6,50 +6,57 @@ using UnityEngine.UI;
 public class TutorialHandler : MonoBehaviour
 {
     [SerializeField]
-    bool enable = true;
-    int currentStep = 0;
+    private bool enable = true;
+    private int currentStep = 0;
 
     [SerializeField]
-    GameObject hpPanel;//must be set in inspector!!!
-    bool hpPanelFirstShow = false;
+    private GameObject hpPanel;//must be set in inspector!!!
+    private bool hpPanelFirstShow = false;
 
     [SerializeField]
-    GameObject X2Scaler; //must be set in inspector!!!
+    private GameObject X2Scaler; //must be set in inspector!!!
 
     [SerializeField]
-    GameObject resultWindow; //must be set in inspector!!!
-    bool resultWinFirstSwowed = false;
-
-    //List<TutoralSteps> tutoralSteps;
-    [SerializeField]
-    GameObject mainCamera; //must be set in Inspector!!!
-    [SerializeField]
-    Vector3 posEnemy; //must be set in Inspector!!!
-    Vector3 startPosCamera;
-    Vector3 targetPosTo;
-
-    bool moveCamera = false;
-    float speedCamera = 1f;
-    float progress = 0f;
+    private GameObject resultWindow; //must be set in inspector!!!
+    private bool resultWinFirstSwowed = false;
 
     [SerializeField]
-    GameObject buttonSkip; //must be set in Inspector!!!
+    private GameObject mainCamera; //must be set in Inspector!!!
     [SerializeField]
-    GameObject countOfSouls; //must be set in inspector!!!
-    [SerializeField]
-    GameObject textSouls;//must be set in inspector!!!
-    bool allSoulsSpent = false;
+    private Vector3 posEnemy; //must be set in Inspector!!!
+    private Vector3 startPosCamera;
+    private Vector3 targetPosTo;
+
+    private bool moveCamera = false;
+    private float speedCamera = 1f;
+    private float progress = 0f;
 
     [SerializeField]
-    List<GameObject> windowSteps; //must be set in inspector!!!
+    private GameObject buttonSkip; //must be set in Inspector!!!
+    [SerializeField]
+    private GameObject countOfSouls; //must be set in inspector!!!
+    [SerializeField]
+    private GameObject textSouls;//must be set in inspector!!!
+    private bool allSoulsSpent = false;
 
     [SerializeField]
-    GameObject loseStep; //must be set!!!
-    [SerializeField]
-    GameObject winStep; //must be set!!!
+    private List<GameObject> windowSteps; //must be set in inspector!!!
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject loseStep; //must be set!!!
+    [SerializeField]
+    private GameObject winStep; //must be set!!!
+
+    private void Start()
+    {
+        InitHandler();
+    }
+    private void Update()
+    {
+        ProcessingTutorial();
+    }
+
+    private void InitHandler()
     {
         if (enable)
         {
@@ -64,19 +71,12 @@ public class TutorialHandler : MonoBehaviour
                 else
                     el.SetActive(true);
             }
-
-            //tutoralSteps = new List<TutoralSteps>();
-            //foreach (TutoralSteps el in System.Enum.GetValues(typeof(TutoralSteps)))
-            //{
-            //    tutoralSteps.Add(el);
-            //}
         }
         else
             gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ProcessingTutorial()
     {
         if (!allSoulsSpent && currentStep == 6)//Place units
         {
@@ -112,7 +112,29 @@ public class TutorialHandler : MonoBehaviour
             OnFinalStep();
         }
     }
+    private IEnumerator WaitForNextStep(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        if (currentStep <= windowSteps.Count)
+        {
+            if (currentStep == 9)//X2 Scale  
+            {
+                Time.timeScale = 0.5f;
+            }
+            else if (currentStep == 10)//HpBar
+            {
+                Time.timeScale = 0.5f;
+                hpPanel.GetComponent<PanelHPHandler>().interactable = true;
+            }
+            windowSteps[currentStep].SetActive(true);
+        }
+        else
+            gameObject.SetActive(false);
+    }
 
+    /*
+     * Then there are events!
+     */
     public void OnSkipTutorial()
     {
         gameObject.SetActive(false);
@@ -136,7 +158,6 @@ public class TutorialHandler : MonoBehaviour
     {
         if (hpPanel.GetComponent<PanelHPHandler>().interactable != false)
             hpPanel.GetComponent<PanelHPHandler>().interactable = false;
-        //windowSteps[currentStep-1].SetActive(false);
         if (buttonSkip.activeSelf)
             buttonSkip.SetActive(false);
         windowSteps[currentStep].SetActive(false);
@@ -153,26 +174,6 @@ public class TutorialHandler : MonoBehaviour
             winStep.SetActive(true);
         else
             loseStep.SetActive(true);
-    }
-
-    IEnumerator WaitForNextStep(float sec)
-    {
-        yield return new WaitForSeconds(sec);
-        if (currentStep <= windowSteps.Count)
-        {
-            if (currentStep == 9)//X2 Scale  
-            {
-                Time.timeScale = 0.5f;
-            }
-            else if (currentStep == 10)//HpBar
-            {
-                Time.timeScale = 0.5f;
-                hpPanel.GetComponent<PanelHPHandler>().interactable = true;
-            }
-            windowSteps[currentStep].SetActive(true);
-        }
-        else
-            gameObject.SetActive(false);
     }
 
     public void SetTime(float scale)
@@ -195,19 +196,6 @@ public class TutorialHandler : MonoBehaviour
         startPosCamera.z = mainCamera.transform.position.z;
         moveCamera = true;
         targetPosTo = startPosCamera;
-        /*
-        Vector3 pos = startPosCamera;
-        pos.z = mainCamera.transform.position.z;
-        float speed = 0.00001f;
-        float progress = 0;
-        pos.z = mainCamera.transform.position.z;
-
-        while (mainCamera.transform.position.x != pos.x)
-        {
-            progress += speed;
-            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, pos, progress);
-        }
-        */
     }
 
     public void OnGoToPosEnemy()
@@ -215,21 +203,5 @@ public class TutorialHandler : MonoBehaviour
         posEnemy.z = mainCamera.transform.position.z;
         moveCamera = true;
         targetPosTo = posEnemy;
-        /*
-        Vector3 pos = posEnemy;
-        pos.z = mainCamera.transform.position.z;
-        float speed = 0.00001f;
-        float progress = 0;
-        pos.z = mainCamera.transform.position.z;
-
-        while (mainCamera.transform.position.x != pos.x)
-        {
-            Debug.Log(progress);
-            progress += speed;
-            mainCamera.transform.Translate()
-            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, pos, progress);
-        }
-        */
     }
-
 }

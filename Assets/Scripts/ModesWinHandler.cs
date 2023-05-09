@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,26 +5,22 @@ using UnityEngine.SceneManagement;
 public class ModesWinHandler : MonoBehaviour
 {
     [SerializeField]
-    Button cusstomButton; //must be set in inspetor
+    private Button cusstomButton; //must be set in inspetor
     [SerializeField]
-    int levelUnlockCusttomBattle = 20;
+    private int levelUnlockCusttomBattle = 20;
 
-    bool checkToUnlockCustom = true;
-    void Start()
-    {
-    }
+    private bool checkToUnlockCustom = true;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-     if (checkToUnlockCustom)
+        if (checkToUnlockCustom)
         {
             checkToUnlockCustom = false;
             CheckUnlockLevel();
         }
     }
 
-    void CheckUnlockLevel()
+    private void CheckUnlockLevel()
     {
         if (SaveManager.data.levelsData[LevelType.Lawn] < levelUnlockCusttomBattle)
         {

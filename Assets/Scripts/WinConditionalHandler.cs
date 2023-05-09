@@ -12,19 +12,24 @@ public class WinConditionalHandler : MonoBehaviour
         HoldOn
     }
 
-    public WinConditional _winningConditional; // must be set in inspector!!!
+    [SerializeField]
+    private WinConditional _winningConditional; // must be set in inspector!!!
     static public WinConditional winningConditional; // must be set in inspector!!!
-    public GameObject resultWindow;     // must be set in inspector!!!
+    [SerializeField]
+    private GameObject resultWindow;     // must be set in inspector!!!
 
-    public bool IsCustomBattle = false;
-    public static bool gameIsRun = false;
-    bool resultShowed = false;
+    [SerializeField]
+    private bool IsCustomBattle = false;
+    static public bool gameIsRun = false;
+    private bool resultShowed = false;
 
     //Defence
     [Header("Defence")]
-    public List<GameObject> _targetsDefence;// must be set in inspector!!!
+    [SerializeField]
+    private List<GameObject> _targetsDefence;// must be set in inspector!!!
     static public List<GameObject> targetsDefence;
-    public bool _onlyMovingToTarget = true;// must be set in inspector!!!
+    [SerializeField]
+    private bool _onlyMovingToTarget = true;// must be set in inspector!!!
     static public bool onlyMovingToTarget = true;
     [SerializeField]
     bool _saveEverybody = false;
@@ -32,13 +37,14 @@ public class WinConditionalHandler : MonoBehaviour
 
     //Hold on
     [Header("Hold On")]
-    public Text secondsTimer;   // must be set in inspector!!!
+    [SerializeField]
+    private Text secondsTimer;   // must be set in inspector!!!
+    [SerializeField]
     private GameObject parentPanelText;// must be set in inspector!!!
-    public int secondsForHoldOn = 0;// must be set in inspector!!!
-    Coroutine holdOnCoroutine;
-
-
-    void Start()
+    [SerializeField]
+    private int secondsForHoldOn = 0;// must be set in inspector!!!
+    private Coroutine holdOnCoroutine;
+    private void Start()
     {
         winningConditional = _winningConditional;
         targetsDefence = _targetsDefence;
@@ -49,8 +55,7 @@ public class WinConditionalHandler : MonoBehaviour
             secondsTimer.text = (secondsForHoldOn / 60).ToString("D2") + ":" + (secondsForHoldOn % 60).ToString("D2");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (gameIsRun && !resultShowed)
         {
@@ -64,7 +69,7 @@ public class WinConditionalHandler : MonoBehaviour
         }
     }
 
-    public void CheckForResult()
+    private void CheckForResult()
     {
         if (winningConditional == WinConditional.Annihilation || winningConditional == WinConditional.Defence || winningConditional == WinConditional.HoldOn)
         {
@@ -131,8 +136,7 @@ public class WinConditionalHandler : MonoBehaviour
             }
         }
     }
-
-    IEnumerator TimerForHoldOn()
+    private IEnumerator TimerForHoldOn()
     {
         int min = secondsForHoldOn / 60;
         int sec = secondsForHoldOn % 60;
