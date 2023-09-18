@@ -60,7 +60,7 @@ public class PanelHPHandler : MonoBehaviour
             }
 #endif
 
-#if UNITY_STANDALONE//UNITY_EDITOR
+#if UNITY_STANDALONE || UNITY_WEBGL//UNITY_EDITOR
             if (Input.GetMouseButtonDown(0)) //can create only under scroll bar
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
