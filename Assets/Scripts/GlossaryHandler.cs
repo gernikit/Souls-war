@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using YG;
 
 public class LevelUnlockMobs
 {
@@ -133,10 +134,10 @@ public class GlossaryHandler : MonoBehaviour
 
     private void Start()
     {
-        OnShowGrid();
-
         glossaryMobs = new GlossaryMobs();
         levelUnlockMobs = new LevelUnlockMobs();
+
+        OnShowGrid();
     }
 
     private void Update()
@@ -171,7 +172,7 @@ public class GlossaryHandler : MonoBehaviour
             if (elem == TypeOfMob.All || elem == TypeOfMob.None)
                 continue;
 
-            if (levelUnlockMobs[elem] <= SaveManager.data.levelsData[levelUnlockMobs.levelType])
+            if (levelUnlockMobs[elem] <= YandexGame.savesData.gameData.levelsData[levelUnlockMobs.levelType])
                 glossaryMobs[elem] = true;
             else
                 glossaryMobs[elem] = false;

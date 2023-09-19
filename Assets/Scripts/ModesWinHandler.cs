@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using YG;
 
 public class ModesWinHandler : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class ModesWinHandler : MonoBehaviour
 
     private void CheckUnlockLevel()
     {
-        if (SaveManager.data.levelsData[LevelType.Lawn] < levelUnlockCusttomBattle)
+        if (YandexGame.savesData.gameData.levelsData[LevelType.Lawn] < levelUnlockCusttomBattle)
         {
             cusstomButton.interactable = false;
             Color col = cusstomButton.gameObject.GetComponent<Image>().color;

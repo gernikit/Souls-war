@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using I2.Loc;
+using YG;
 
 [System.Serializable]
 public enum LevelType
@@ -20,9 +21,8 @@ public class LevelsController : MonoBehaviour
 
     private void Start()
     {
-        SaveManager.LoadGame();
-        LocalizationManager.CurrentLanguage = SaveManager.data.strLanguage;
-        currentLevel = SaveManager.data.levelsData[typeLevel];
+        LocalizationManager.CurrentLanguage = YandexGame.savesData.gameData.strLanguage;
+        currentLevel = YandexGame.savesData.gameData.levelsData[typeLevel];
         levelInput.GetComponent<InputField>().text = currentLevel.ToString();
         levelIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Levels\\" + typeLevel.ToString() + "\\Icons\\" + typeLevel.ToString() + currentLevel.ToString());
     }
@@ -34,7 +34,7 @@ public class LevelsController : MonoBehaviour
     }
     private bool IsValidLevelValue(int value)
     {
-        if (value >= 1 && value <= SaveManager.data.levelsData[typeLevel])
+        if (value >= 1 && value <= YandexGame.savesData.gameData.levelsData[typeLevel])
             return true;
         else
             return false;
@@ -59,7 +59,7 @@ public class LevelsController : MonoBehaviour
 
         if (!IsValidLevelValue(value))
         {
-            value = Mathf.Clamp(value, 1, SaveManager.data.levelsData[typeLevel]);
+            value = Mathf.Clamp(value, 1, YandexGame.savesData.gameData.levelsData[typeLevel]);
             levelInput.GetComponent<InputField>().text = value.ToString();
         }
         ChangeCurrentLevelValue(value.ToString());
@@ -68,7 +68,7 @@ public class LevelsController : MonoBehaviour
 
     public void OnSelectLevel()
     {
-        if (currentLevel <= SaveManager.data.levelsData[typeLevel])
+        if (currentLevel <= YandexGame.savesData.gameData.levelsData[typeLevel])
             SceneManager.LoadScene(typeLevel.ToString() + currentLevel.ToString());
     }
 

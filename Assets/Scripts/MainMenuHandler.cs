@@ -1,6 +1,7 @@
 using UnityEngine;
 using I2.Loc;
 using UnityEngine.UI;
+using YG;
 
 public class MainMenuHandler : MonoBehaviour
 {
@@ -16,24 +17,37 @@ public class MainMenuHandler : MonoBehaviour
     private GameObject glossary;
     [SerializeField]
     private GameObject volumeSlider;
-
-    private bool loadOptions = false;
-
-
+    
     void Start()
     {
+        if (YandexGame.SDKEnabled)
+        {
+            GetLoad();
+        }
+
         OnMainMenuShow();
     }
 
-    void Update()
+    private void OnEnable() => YandexGame.GetDataEvent += GetLoad;
+    
+    private void OnDisable() => YandexGame.GetDataEvent -= GetLoad;
+
+    private void GetLoad()
     {
-        if (!loadOptions)
+        if (YandexGame.savesData.isFirstLoad == true)
         {
-            volumeSlider.GetComponent<Slider>().value = SaveManager.data.volume;
-            volumeSlider.GetComponent<Slider>().onValueChanged.Invoke(SaveManager.data.volume);
-            loadOptions = true;
+            YandexGame.savesData.isFirstLoad = false;
+            YandexGame.savesData.gameData = new GameData();
+            YandexGame.savesData.gameData.SetDefaultData();
+            YandexGame.SaveProgress();
+        }
+        else
+        {
+            volumeSlider.GetComponent<Slider>().onValueChanged.Invoke(YandexGame.savesData.gameData.volume);
+            volumeSlider.GetComponent<Slider>().value = YandexGame.savesData.gameData.volume;
         }
     }
+    
     public void OnMainMenuShow()
     {
         mainMenu.SetActive(true);
@@ -41,8 +55,6 @@ public class MainMenuHandler : MonoBehaviour
         chooseLevels.SetActive(false);
         arena.SetActive(false);
         glossary.SetActive(false);
-
-        SaveManager.SaveGame();
     }
     public void OnOptionsShow()
     {
@@ -80,25 +92,20 @@ public class MainMenuHandler : MonoBehaviour
         glossary.SetActive(true);
     }
 
+    public void SaveOptions()
+    {
+        YandexGame.SaveProgress();
+    }
+
     public void OnChangedVolume(float value)
     {
-        SaveManager.data.volume = value;
+        YandexGame.savesData.gameData.volume = value;
         AudioListener.volume = value;
     }
 
     public void OnChangedLanguage(int index)
     {
-        SaveManager.data.strLanguage = ((Languages)index).ToString();
+        YandexGame.savesData.gameData.strLanguage = ((Languages)index).ToString();
         LocalizationManager.CurrentLanguage = ((Languages)index).ToString();
-    }
-
-    public void OnExit()
-    {
-        Application.Quit();
-    }
-
-    public void OnGoCommunities(string url)
-    {
-        Application.OpenURL(url);
     }
 }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -57,14 +59,6 @@ public class ScrollViewOfCreation : MonoBehaviour
 
     [SerializeField]
     private RestartLevelData restartLevelData;//must be set in inspector!!!
-
-    private TypeOfMob activeType;
-    private Dictionary<TypeOfMob, int> countOfMobs;
-    private List<GameObject> playerMobs;
-    private TroopsCost troopsCost;
-
-    private bool removeMob = false;
-
     [SerializeField]
     private int countOfMoney = 5; //must be set in inspector before game!!!
     [SerializeField]
@@ -75,10 +69,24 @@ public class ScrollViewOfCreation : MonoBehaviour
     [SerializeField]
     private List<TypeOfMob> unavailableMobs; //must be set in inspector before game!!! default == all
 
+    [SerializeField] private List<Sprite> bodyImagePool;
+    [SerializeField] private Image currentMobBody;
+
+    private TypeOfMob activeType;
+    private Dictionary<TypeOfMob, int> countOfMobs;
+    private List<GameObject> playerMobs;
+    private TroopsCost troopsCost;
+
+    private bool removeMob = false;
+    private bool showModBody = false;
+    private bool showRedMobBody = false;
+
     private void Start()
     {
         activeType = TypeOfMob.None;
         troopsCost = new TroopsCost();
+
+        VisualizeBodyMob(false);
 
         if (restartLevel)
         { 
@@ -101,6 +109,9 @@ public class ScrollViewOfCreation : MonoBehaviour
     private void Update()
     {
         ProcessInput();
+        
+        if (showModBody == true)
+            ProcessVizualizationBodyMob();
     }
     public void SaveRestartData()
     {
@@ -118,6 +129,9 @@ public class ScrollViewOfCreation : MonoBehaviour
     public void ChooseMobType(string type)
     {
         activeType = (TypeOfMob)System.Enum.Parse(typeof(TypeOfMob), type);
+
+        VisualizeBodyMob(true);
+        
         removeMob = false;
     }
 
@@ -137,6 +151,56 @@ public class ScrollViewOfCreation : MonoBehaviour
                 mob.transform.Find("model").GetComponent<Mob>().SetOutline(Resources.Load<Material>("Outline/SpritesheetMaterial_Outline"));
             }
             playerMobs.Add(mob); 
+        }
+    }
+
+    private void VisualizeBodyMob(bool isActive)
+    {
+        if (isActive == true)
+            currentMobBody.sprite = bodyImagePool.First(body => body.name == activeType.ToString());
+        
+        currentMobBody.enabled = isActive;
+        showModBody = isActive;
+    }
+
+    private void ProcessVizualizationBodyMob()
+    {
+        Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        cursorPosition.z = 0;
+        currentMobBody.transform.position = cursorPosition;
+        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("UI") | LayerMask.GetMask("Mobs"));
+        
+        if (countOfMoney > 0 && activeType != TypeOfMob.None && hit.collider != null && hit.collider.gameObject.tag == "SpawnZone")
+        {
+            if (troopsCost.GetCostInSoul(activeType) <= countOfMoney && countOfMobs[activeType] <= troopsCost.GetCountOfTroops(activeType))
+            {
+                if (showRedMobBody == true)
+                {
+                    currentMobBody.color = new Color(255, 255, 255, 0.5f);
+                    showRedMobBody = false;
+                }
+            }
+        }
+        else if (countOfMoney > 0 && activeType != TypeOfMob.None && hit.collider != null && hit.collider.gameObject.tag == "SpawnEnemyZone")
+        {
+            if (troopsCost.GetCostInSoul(activeType) <= countOfMoney && countOfMobs[activeType] <= troopsCost.GetCountOfTroops(activeType))
+            {
+                if (showRedMobBody == true)
+                {
+                    currentMobBody.color = new Color(255, 255, 255, 0.5f);
+                    showRedMobBody = false;
+                }
+            }
+        }
+        else
+        {
+            if (showRedMobBody == false)
+            {
+                currentMobBody.color = new Color(255 / 255f, 135 / 255f, 135 / 255f, 0.5f);
+                showRedMobBody = true;
+            }
         }
     }
 
@@ -269,11 +333,15 @@ public class ScrollViewOfCreation : MonoBehaviour
 
     public void OnRemoveButton()
     {
-        removeMob = !removeMob;
+        removeMob = true;
+
+        VisualizeBodyMob(false);
     }
 
     public void OnRemoveAll()
     {
+        VisualizeBodyMob(false);
+        
         List<GameObject> playerMobsCopy = new List<GameObject>(playerMobs); //slowly
         foreach (GameObject el in playerMobsCopy)
         {

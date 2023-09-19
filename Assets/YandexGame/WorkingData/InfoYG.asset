@@ -32,7 +32,7 @@ MonoBehaviour:
   localSaveSync: 1
   saveCloudInterval: 5
   saveOnQuitGame: 0
-  leaderboardEnable: 1
+  leaderboardEnable: 0
   leaderboardSimulation:
   - technoName: advanced
     entries: 'Test LeaderBoard
@@ -209,35 +209,6 @@ MonoBehaviour:
     de: 0
     hi: 0
   fonts:
-    defaultFont: []
-    ru: []
-    en: []
-    tr: []
-    az: []
-    be: []
-    he: []
-    hy: []
-    ka: []
-    et: []
-    fr: []
-    kk: []
-    ky: []
-    lt: []
-    lv: []
-    ro: []
-    tg: []
-    tk: []
-    uk: []
-    uz: []
-    es: []
-    pt: []
-    ar: []
-    id: []
-    ja: []
-    it: []
-    de: []
-    hi: []
-  fontsTMP:
     defaultFont: []
     ru: []
     en: []

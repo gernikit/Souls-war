@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using I2.Loc;
+using YG;
 
 public class ResultWindowHandler : MonoBehaviour
 {
@@ -50,10 +51,10 @@ public class ResultWindowHandler : MonoBehaviour
         if (timerHoldOn != null)
             timerHoldOn.SetActive(false);
         winElements.SetActive(true);
-        if (SaveManager.data.levelsData[LevelsController.typeLevel] < LevelsController.currentLevel + 1 &&
-            SaveManager.data.maxLevelsData[LevelsController.typeLevel] >= LevelsController.currentLevel + 1)
-            SaveManager.data.levelsData[LevelsController.typeLevel] = LevelsController.currentLevel + 1;
-        SaveManager.SaveGame();
+        if (YandexGame.savesData.gameData.levelsData[LevelsController.typeLevel] < LevelsController.currentLevel + 1 &&
+            YandexGame.savesData.gameData.maxLevelsData[LevelsController.typeLevel] >= LevelsController.currentLevel + 1)
+            YandexGame.savesData.gameData.levelsData[LevelsController.typeLevel] = LevelsController.currentLevel + 1;
+        YandexGame.SaveProgress();
     }
 
     public void LoadLose()
@@ -89,7 +90,7 @@ public class ResultWindowHandler : MonoBehaviour
         if (timerHoldOn != null)
             timerHoldOn.SetActive(false);
         winElements.SetActive(true);
-        SaveManager.SaveGame();
+        YandexGame.SaveProgress();
     }
 
     public void LoadLoseCustomBattle()
@@ -108,7 +109,7 @@ public class ResultWindowHandler : MonoBehaviour
         if (timerHoldOn != null)
             timerHoldOn.SetActive(false);
         winElements.SetActive(true);
-        SaveManager.SaveGame();
+        YandexGame.SaveProgress();
     }
 
     public void OnResultAction()
@@ -121,7 +122,7 @@ public class ResultWindowHandler : MonoBehaviour
         }
         else if (IsWin)
         {
-            if (SaveManager.data.maxLevelsData[LevelsController.typeLevel] >= LevelsController.currentLevel + 1)
+            if (YandexGame.savesData.gameData.maxLevelsData[LevelsController.typeLevel] >= LevelsController.currentLevel + 1)
                 LevelsController.currentLevel += 1;
             SceneManager.LoadScene(LevelsController.typeLevel.ToString() + (LevelsController.currentLevel).ToString());
         }
