@@ -100,7 +100,7 @@ public class ScrollViewOfCreation : MonoBehaviour
 
         if (restartLevel)
         { 
-            if (awardsReceived <= 2 && rewardAd != null)
+            if (awardsReceived < 2 && rewardAd != null)
                 rewardAd.SetActive(true);
             
             restartLevel = false;
@@ -130,7 +130,7 @@ public class ScrollViewOfCreation : MonoBehaviour
     {
         awardsReceived += 1;
         
-        if (awardsReceived == 3)
+        if (awardsReceived == 2)
             rewardAd.SetActive(false);
             
         countOfMoney += 5;

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class StartGame : MonoBehaviour
@@ -8,8 +9,7 @@ public class StartGame : MonoBehaviour
     private GameObject scrollOfCreation; //must be set in inspector!!!
     [SerializeField]
     private GameObject availableZone;//must be set in inspector!!!
-    [SerializeField]
-    private GameObject X2Button;//must be set in inspector!!!
+    [SerializeField] [CanBeNull] private GameObject X2Button;//must be set in inspector!!!
     [SerializeField]
     private GameObject dungerousMark;//must be set in inspector!!!
 
@@ -23,7 +23,7 @@ public class StartGame : MonoBehaviour
 
         WinConditionalHandler.gameIsRun = true;
 
-        X2Button.SetActive(true);
+        if (X2Button != null) X2Button.SetActive(true);
 
         availableZone.SetActive(false);
 

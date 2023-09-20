@@ -78,15 +78,6 @@ public class TutorialHandler : MonoBehaviour
 
     private void ProcessingTutorial()
     {
-        if (!allSoulsSpent && currentStep == 6)//Place units
-        {
-            if (textSouls.GetComponent<Text>().text == 0.ToString())
-            {
-                allSoulsSpent = true;
-                countOfSouls.GetComponent<Animator>().enabled = false;
-                OnNextStep();
-            }
-        }
         if (moveCamera)
         {
             if (mainCamera.transform.position != targetPosTo)
@@ -98,6 +89,15 @@ public class TutorialHandler : MonoBehaviour
             {
                 moveCamera = false;
                 progress = 0f;
+            }
+        }
+        if (!allSoulsSpent && currentStep == 6)//Place units
+        {
+            if (textSouls.GetComponent<Text>().text == 0.ToString())
+            {
+                allSoulsSpent = true;
+                countOfSouls.GetComponent<Animator>().enabled = false;
+                OnNextStep();
             }
         }
         if (hpPanel.GetComponent<PanelHPHandler>().GetPanelHp().activeSelf && currentStep == 10 && !hpPanelFirstShow)//HPBar
@@ -119,7 +119,7 @@ public class TutorialHandler : MonoBehaviour
         {
             if (currentStep == 9)//X2 Scale  
             {
-                Time.timeScale = 0.5f;
+                X2Scaler.SetActive(true);
             }
             else if (currentStep == 10)//HpBar
             {
