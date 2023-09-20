@@ -159,7 +159,7 @@ public class GlossaryHandler : MonoBehaviour
         informationWindow.SetActive(true);
     }
 
-    private void OnShowGrid()
+    public void OnShowGrid()
     {
         mobsGridWindow.SetActive(true);
         informationWindow.SetActive(false);
