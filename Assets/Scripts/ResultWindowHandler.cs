@@ -125,6 +125,7 @@ public class ResultWindowHandler : MonoBehaviour
             if (YandexGame.savesData.gameData.maxLevelsData[LevelsController.typeLevel] >= LevelsController.currentLevel + 1)
                 LevelsController.currentLevel += 1;
             SceneManager.LoadScene(LevelsController.typeLevel.ToString() + (LevelsController.currentLevel).ToString());
+            ScrollViewOfCreation.awardsReceived = 0;
         }
         else//lose
         {
@@ -143,6 +144,7 @@ public class ResultWindowHandler : MonoBehaviour
         Mob.gameIsStop = true; //important!!!
         winElements.SetActive(false);
         optionButton.SetActive(true);
+        ScrollViewOfCreation.awardsReceived = 0;
         WinConditionalHandler.gameIsRun = false;
     }
 }

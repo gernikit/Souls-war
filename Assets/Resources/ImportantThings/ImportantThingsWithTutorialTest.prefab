@@ -17516,6 +17516,7 @@ MonoBehaviour:
   restartLevelData: {fileID: 11400000, guid: c5f54f0ef0803b74a9fd2dd27bdbfa6d, type: 2}
   countOfMoney: 20
   moneyTextBox: {fileID: 5607596400357387044}
+  cameraHandler: {fileID: 0}
   mobsButtonContent: {fileID: 1349853856534024895}
   unavailableMobs: 0600000002000000030000000400000005000000
   bodyImagePool: []
@@ -28699,7 +28700,6 @@ GameObject:
   - component: {fileID: 5607596400473730919}
   - component: {fileID: 5607596400473730904}
   - component: {fileID: 5607596400473730905}
-  - component: {fileID: 5607596400473730918}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -28766,19 +28766,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5607596400473730918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5607596400473730916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
 --- !u!1 &5607596400478117823
 GameObject:
   m_ObjectHideFlags: 0
@@ -33210,8 +33197,9 @@ MonoBehaviour:
   restartLevelData: {fileID: 11400000, guid: c5f54f0ef0803b74a9fd2dd27bdbfa6d, type: 2}
   countOfMoney: 20
   moneyTextBox: {fileID: 5607596400357387044}
+  cameraHandler: {fileID: 5607596399897256263}
   mobsButtonContent: {fileID: 5607596401100419327}
-  unavailableMobs: 0600000002000000030000000400000005000000
+  unavailableMobs: 0200000003000000040000000500000006000000
   bodyImagePool:
   - {fileID: 21300000, guid: 1fe2165b5cb810843b97c509fa18feef, type: 3}
   - {fileID: 21300000, guid: ef2f325f729cbd740a3ee9fc7bec69fc, type: 3}
@@ -37945,6 +37933,7 @@ MonoBehaviour:
   restartLevelData: {fileID: 11400000, guid: c5f54f0ef0803b74a9fd2dd27bdbfa6d, type: 2}
   countOfMoney: 20
   moneyTextBox: {fileID: 5607596400357387044}
+  cameraHandler: {fileID: 0}
   mobsButtonContent: {fileID: 894405688914896361}
   unavailableMobs: 0600000002000000030000000400000005000000
   bodyImagePool: []
@@ -40460,6 +40449,7 @@ MonoBehaviour:
   restartLevelData: {fileID: 11400000, guid: c5f54f0ef0803b74a9fd2dd27bdbfa6d, type: 2}
   countOfMoney: 20
   moneyTextBox: {fileID: 5607596400357387044}
+  cameraHandler: {fileID: 0}
   mobsButtonContent: {fileID: 1655677639828985544}
   unavailableMobs: 0600000002000000030000000400000005000000
   bodyImagePool: []

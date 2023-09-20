@@ -1,13 +1,34 @@
 {
-    "idSave": 4,
+    "idSave": 2,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
-    "money": 44,
-    "newPlayerName": "6HGH",
+    "money": 1,
+    "newPlayerName": "Hello!",
     "openLevels": [
-        true,
         false,
-        true
-    ]
+        false,
+        false
+    ],
+    "gameData": {
+        "levelsData": {
+            "levelType": [
+                0
+            ],
+            "playerLevelNumber": [
+                2
+            ]
+        },
+        "maxLevelsData": {
+            "levelType": [
+                0
+            ],
+            "maxLevelList": [
+                30
+            ]
+        },
+        "strLanguage": "Russian",
+        "volume": 1.0
+    },
+    "isFirstLoad": false
 }

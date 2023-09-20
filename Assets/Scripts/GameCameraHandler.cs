@@ -22,6 +22,8 @@ public class GameCameraHandler : MonoBehaviour
 
     private Camera mainCamera;
 
+    public bool CanMove { get; set; } = true;
+
     private void Start()
     {
         mainCamera = GetComponent<Camera>();
@@ -35,7 +37,8 @@ public class GameCameraHandler : MonoBehaviour
     }
     private void Update()
     {
-        ProcessInput();
+        if (CanMove == true)
+            ProcessInput();
     }
 
     private void ProcessInput()

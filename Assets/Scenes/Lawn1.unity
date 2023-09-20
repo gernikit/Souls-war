@@ -415,8 +415,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 963350508469571625, guid: 7f478dd424550724f97e125dd3170160, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 963350508469571625, guid: 7f478dd424550724f97e125dd3170160, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 963350508469571625, guid: 7f478dd424550724f97e125dd3170160, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 963350508469571625, guid: 7f478dd424550724f97e125dd3170160, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 963350508469571625, guid: 7f478dd424550724f97e125dd3170160, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 943
+      value: 942.5
       objectReference: {fileID: 0}
     - target: {fileID: 963350508469571625, guid: 7f478dd424550724f97e125dd3170160, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -656,7 +672,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5607596401197588822, guid: 7f478dd424550724f97e125dd3170160, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -79.06993
+      value: -79.069695
       objectReference: {fileID: 0}
     - target: {fileID: 5607596401282028382, guid: 7f478dd424550724f97e125dd3170160, type: 3}
       propertyPath: m_AnchorMax.y
@@ -676,11 +692,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5607596401329218769, guid: 7f478dd424550724f97e125dd3170160, type: 3}
       propertyPath: unavailableMobs.Array.size
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5607596401329218769, guid: 7f478dd424550724f97e125dd3170160, type: 3}
-      propertyPath: unavailableMobs.Array.data[4]
-      value: 5
+      propertyPath: unavailableMobs.Array.data[0]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607596401329218769, guid: 7f478dd424550724f97e125dd3170160, type: 3}
+      propertyPath: unavailableMobs.Array.data[1]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607596401329218769, guid: 7f478dd424550724f97e125dd3170160, type: 3}
+      propertyPath: unavailableMobs.Array.data[2]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607596401329218769, guid: 7f478dd424550724f97e125dd3170160, type: 3}
+      propertyPath: unavailableMobs.Array.data[3]
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5607596401420907062, guid: 7f478dd424550724f97e125dd3170160, type: 3}
       propertyPath: uniqueID

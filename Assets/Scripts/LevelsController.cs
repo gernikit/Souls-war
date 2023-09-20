@@ -21,7 +21,6 @@ public class LevelsController : MonoBehaviour
 
     private void Start()
     {
-        LocalizationManager.CurrentLanguage = YandexGame.savesData.gameData.strLanguage;
         currentLevel = YandexGame.savesData.gameData.levelsData[typeLevel];
         levelInput.GetComponent<InputField>().text = currentLevel.ToString();
         levelIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Levels\\" + typeLevel.ToString() + "\\Icons\\" + typeLevel.ToString() + currentLevel.ToString());

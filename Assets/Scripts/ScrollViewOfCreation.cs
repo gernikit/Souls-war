@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using YG;
 
 public enum TypeOfMob
 {
@@ -56,6 +56,7 @@ public class TroopsCost
 public class ScrollViewOfCreation : MonoBehaviour
 {
     public static bool restartLevel = false;
+    public static int awardsReceived = 0;
 
     [SerializeField]
     private RestartLevelData restartLevelData;//must be set in inspector!!!
@@ -63,6 +64,8 @@ public class ScrollViewOfCreation : MonoBehaviour
     private int countOfMoney = 5; //must be set in inspector before game!!!
     [SerializeField]
     private Text moneyTextBox;  //must be set in inspector text of money!!!
+    [SerializeField]
+    private GameCameraHandler cameraHandler;
 
     [SerializeField]
     private GameObject mobsButtonContent; //must be set in inspector before game!!!
@@ -72,14 +75,21 @@ public class ScrollViewOfCreation : MonoBehaviour
     [SerializeField] private List<Sprite> bodyImagePool;
     [SerializeField] private Image currentMobBody;
 
+    [SerializeField] private GameObject rewardAd;
+
     private TypeOfMob activeType;
     private Dictionary<TypeOfMob, int> countOfMobs;
     private List<GameObject> playerMobs;
     private TroopsCost troopsCost;
 
+    private bool holdingCreation = false;
     private bool removeMob = false;
     private bool showModBody = false;
     private bool showRedMobBody = false;
+
+    private void OnEnable() => YandexGame.RewardVideoEvent += Rewarded;
+
+    private void OnDisable() => YandexGame.RewardVideoEvent -= Rewarded;
 
     private void Start()
     {
@@ -90,6 +100,9 @@ public class ScrollViewOfCreation : MonoBehaviour
 
         if (restartLevel)
         { 
+            if (awardsReceived <= 2 && rewardAd != null)
+                rewardAd.SetActive(true);
+            
             restartLevel = false;
             LoadRestartData();
         }
@@ -112,6 +125,16 @@ public class ScrollViewOfCreation : MonoBehaviour
         
         if (showModBody == true)
             ProcessVizualizationBodyMob();
+    }
+    void Rewarded(int id)
+    {
+        awardsReceived += 1;
+        
+        if (awardsReceived == 3)
+            rewardAd.SetActive(false);
+            
+        countOfMoney += 5;
+        moneyTextBox.text = countOfMoney.ToString();
     }
     public void SaveRestartData()
     {
@@ -157,10 +180,19 @@ public class ScrollViewOfCreation : MonoBehaviour
     private void VisualizeBodyMob(bool isActive)
     {
         if (isActive == true)
+        {
             currentMobBody.sprite = bodyImagePool.First(body => body.name == activeType.ToString());
-        
+            currentMobBody.SetNativeSize();
+        }
+
         currentMobBody.enabled = isActive;
         showModBody = isActive;
+    }
+
+    private void HoldCreation(bool isActive)
+    {
+        cameraHandler.CanMove = !isActive;
+        holdingCreation = isActive;
     }
 
     private void ProcessVizualizationBodyMob()
@@ -206,15 +238,12 @@ public class ScrollViewOfCreation : MonoBehaviour
 
     private void ProcessInput()
     {
-#if UNITY_ANDROID
-        if (Input.touchCount > 0)//can create only under scroll bar
+#if UNITY_STANDALONE  || UNITY_WEBGL
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("UI") | LayerMask.GetMask("Mobs"));//UI!!!
-
-            if (EventSystem.current.IsPointerOverGameObject())//check it
-                return;
-
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("UI") | LayerMask.GetMask("Mobs"));
+        
             if (removeMob)
             {
                 List<GameObject> playerMobsCopy = new List<GameObject>(playerMobs); //slowly
@@ -233,65 +262,31 @@ public class ScrollViewOfCreation : MonoBehaviour
             }
             else if (countOfMoney > 0 && activeType != TypeOfMob.None && hit.collider != null && hit.collider.gameObject.tag == "SpawnZone")
             {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
+                if (troopsCost.GetCostInSoul(activeType) <= countOfMoney && countOfMobs[activeType] <= troopsCost.GetCountOfTroops(activeType))
                 {
-                    if (troopsCost.GetCostInSoul(activeType) <= countOfMoney && countOfMobs[activeType] <= troopsCost.GetCountOfTroops(activeType))
-                    {
-                        GameObject mob = Instantiate(Resources.Load<GameObject>("Mobs\\" + activeType.ToString()), new Vector2(ray.origin.x, ray.origin.y), new Quaternion());
-                        countOfMoney -= troopsCost.GetCostInSoul(activeType);
-                        moneyTextBox.text = countOfMoney.ToString();
-                        playerMobs.Add(mob);
-                        countOfMobs[activeType] += 1;
-                    }
+                    HoldCreation(true);
                 }
             }
             else if (countOfMoney > 0 && activeType != TypeOfMob.None && hit.collider != null && hit.collider.gameObject.tag == "SpawnEnemyZone")
             {
-                Touch touch = Input.GetTouch(0);
-                if (touch.phase == TouchPhase.Began)
+                if (troopsCost.GetCostInSoul(activeType) <= countOfMoney && countOfMobs[activeType] <= troopsCost.GetCountOfTroops(activeType))
                 {
-                    if (troopsCost.GetCostInSoul(activeType) <= countOfMoney && countOfMobs[activeType] <= troopsCost.GetCountOfTroops(activeType))
-                    {
-                        GameObject mob = Instantiate(Resources.Load<GameObject>("Mobs\\" + activeType.ToString()), new Vector2(ray.origin.x, ray.origin.y), new Quaternion());
-                        mob.transform.Find("model").GetComponent<Mob>().tag = "Enemy";
-                        mob.transform.Find("model").GetComponent<Mob>().SetOutline(Resources.Load<Material>("Outline/SpritesheetMaterial_Outline"));
-                        countOfMoney -= troopsCost.GetCostInSoul(activeType);
-                        moneyTextBox.text = countOfMoney.ToString();
-                        playerMobs.Add(mob);
-                        countOfMobs[activeType] += 1;
-                    }
+                    HoldCreation(true);
                 }
             }
         }
-#endif
         
-#if UNITY_STANDALONE  || UNITY_WEBGL//UNITY_EDITOR
-        if (Input.GetMouseButtonDown(0))//can create only under scroll bar
+        if (Input.GetMouseButtonUp(0) && holdingCreation)
         {
+            HoldCreation(false);
+            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, LayerMask.GetMask("UI") | LayerMask.GetMask("Mobs"));//UI!!!
 
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
-
-            if (removeMob)
-            {
-                List<GameObject> playerMobsCopy = new List<GameObject>(playerMobs); //slowly
-                foreach (GameObject el in playerMobsCopy) //slowly using RAYCAST!!!
-                {
-                    if (Vector2.Distance(new Vector2(ray.origin.x, ray.origin.y), el.transform.position) < 1.0f)
-                    {
-                        TypeOfMob mobType = el.transform.Find("model").GetComponent<Mob>().TypeOfMob;
-                        countOfMoney += troopsCost.GetCostInSoul(mobType);
-                        moneyTextBox.text = countOfMoney.ToString();
-                        playerMobs.Remove(el);
-                        countOfMobs[mobType] -= 1;
-                        Destroy(el);
-                    }
-                }
-            }
-            else if (countOfMoney > 0 && activeType != TypeOfMob.None && hit.collider != null && hit.collider.gameObject.tag == "SpawnZone")
+                
+            if (countOfMoney > 0 && activeType != TypeOfMob.None && hit.collider != null && hit.collider.gameObject.tag == "SpawnZone")
             {
                 if (troopsCost.GetCostInSoul(activeType) <= countOfMoney && countOfMobs[activeType] <= troopsCost.GetCountOfTroops(activeType))
                 {
@@ -334,13 +329,15 @@ public class ScrollViewOfCreation : MonoBehaviour
     public void OnRemoveButton()
     {
         removeMob = true;
-
+        
+        HoldCreation(false);
         VisualizeBodyMob(false);
     }
 
     public void OnRemoveAll()
     {
         VisualizeBodyMob(false);
+        HoldCreation(false);
         
         List<GameObject> playerMobsCopy = new List<GameObject>(playerMobs); //slowly
         foreach (GameObject el in playerMobsCopy)

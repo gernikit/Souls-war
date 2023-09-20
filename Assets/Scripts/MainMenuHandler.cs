@@ -39,12 +39,19 @@ public class MainMenuHandler : MonoBehaviour
             YandexGame.savesData.isFirstLoad = false;
             YandexGame.savesData.gameData = new GameData();
             YandexGame.savesData.gameData.SetDefaultData();
+            
+            if (YandexGame.EnvironmentData.language == "ru")
+                OnChangedLanguage(1);
+            else if (YandexGame.EnvironmentData.language == "en")
+                OnChangedLanguage(0);
+            
             YandexGame.SaveProgress();
         }
         else
         {
             volumeSlider.GetComponent<Slider>().onValueChanged.Invoke(YandexGame.savesData.gameData.volume);
             volumeSlider.GetComponent<Slider>().value = YandexGame.savesData.gameData.volume;
+            LocalizationManager.CurrentLanguage = YandexGame.savesData.gameData.strLanguage;
         }
     }
     
