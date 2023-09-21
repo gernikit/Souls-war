@@ -17,13 +17,16 @@ public class MainMenuHandler : MonoBehaviour
     private GameObject glossary;
     [SerializeField]
     private GameObject volumeSlider;
+
+    [SerializeField] private GameObject AuthButton;
     
     void Start()
     {
         if (YandexGame.SDKEnabled)
-        {
             GetLoad();
-        }
+        
+        if (YandexGame.auth == true)
+            AuthButton.SetActive(false);
 
         OnMainMenuShow();
     }
