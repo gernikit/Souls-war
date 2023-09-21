@@ -5,28 +5,18 @@ using YG;
 
 public class MainMenuHandler : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject mainMenu;
-    [SerializeField]
-    private GameObject options;
-    [SerializeField]
-    private GameObject chooseLevels;
-    [SerializeField]
-    private GameObject arena;
-    [SerializeField]
-    private GameObject glossary;
-    [SerializeField]
-    private GameObject volumeSlider;
-
-    [SerializeField] private GameObject AuthButton;
+    [SerializeField] private GameObject mainMenu;
+    [SerializeField] private GameObject options;
+    [SerializeField] private GameObject chooseLevels;
+    [SerializeField] private GameObject arena;
+    [SerializeField] private GameObject glossary;
+    [SerializeField] private GameObject volumeSlider;
+    [SerializeField] private GameObject authButton;
     
     void Start()
     {
         if (YandexGame.SDKEnabled)
             GetLoad();
-        
-        if (YandexGame.auth == true)
-            AuthButton.SetActive(false);
 
         OnMainMenuShow();
     }
@@ -43,19 +33,28 @@ public class MainMenuHandler : MonoBehaviour
             YandexGame.savesData.gameData = new GameData();
             YandexGame.savesData.gameData.SetDefaultData();
             
-            if (YandexGame.EnvironmentData.language == "ru")
-                OnChangedLanguage(1);
-            else if (YandexGame.EnvironmentData.language == "en")
-                OnChangedLanguage(0);
-            
             YandexGame.SaveProgress();
         }
         else
         {
             volumeSlider.GetComponent<Slider>().onValueChanged.Invoke(YandexGame.savesData.gameData.volume);
             volumeSlider.GetComponent<Slider>().value = YandexGame.savesData.gameData.volume;
-            LocalizationManager.CurrentLanguage = YandexGame.savesData.gameData.strLanguage;
         }
+        
+        if (YandexGame.auth == true)
+            authButton.SetActive(false);
+
+        DefineLanguage();
+    }
+
+    private void DefineLanguage()
+    {
+        if (YandexGame.EnvironmentData.language == "ru")
+            OnChangedLanguage(1);
+        else if (YandexGame.EnvironmentData.language == "en")
+            OnChangedLanguage(0);
+        else if (YandexGame.EnvironmentData.language == "tr")
+            OnChangedLanguage(2);
     }
     
     public void OnMainMenuShow()
@@ -115,7 +114,6 @@ public class MainMenuHandler : MonoBehaviour
 
     public void OnChangedLanguage(int index)
     {
-        YandexGame.savesData.gameData.strLanguage = ((Languages)index).ToString();
         LocalizationManager.CurrentLanguage = ((Languages)index).ToString();
     }
 }

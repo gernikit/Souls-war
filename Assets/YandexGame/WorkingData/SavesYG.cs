@@ -5,7 +5,8 @@ namespace YG
     public enum Languages
     {
         English,
-        Russian
+        Russian,
+        Turkish
     }
     
     [System.Serializable]
@@ -101,8 +102,7 @@ namespace YG
     {
         public LevelsData levelsData;
         public MaxLevelsData maxLevelsData;
-
-        public string strLanguage = Languages.English.ToString();
+        
         public float volume = 1; // 1 = 100%
 
         public void SetDefaultData()

@@ -1,2 +1,2 @@
 Build path: D:/Unity Projects/Souls-war/Build
-Build number: 25
+Build number: 28

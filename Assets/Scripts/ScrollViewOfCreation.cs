@@ -57,6 +57,8 @@ public class ScrollViewOfCreation : MonoBehaviour
 {
     public static bool restartLevel = false;
     public static int awardsReceived = 0;
+    public static int currentAward = 6;
+    
 
     [SerializeField]
     private RestartLevelData restartLevelData;//must be set in inspector!!!
@@ -71,6 +73,8 @@ public class ScrollViewOfCreation : MonoBehaviour
     private GameObject mobsButtonContent; //must be set in inspector before game!!!
     [SerializeField]
     private List<TypeOfMob> unavailableMobs; //must be set in inspector before game!!! default == all
+
+    [SerializeField] private Text soulsAdText;
 
     [SerializeField] private List<Sprite> bodyImagePool;
     [SerializeField] private Image currentMobBody;
@@ -99,9 +103,12 @@ public class ScrollViewOfCreation : MonoBehaviour
         VisualizeBodyMob(false);
 
         if (restartLevel)
-        { 
+        {
             if (awardsReceived < 2 && rewardAd != null)
+            {
+                soulsAdText.text = "+" + currentAward.ToString();
                 rewardAd.SetActive(true);
+            }
             
             restartLevel = false;
             LoadRestartData();
@@ -129,11 +136,13 @@ public class ScrollViewOfCreation : MonoBehaviour
     void Rewarded(int id)
     {
         awardsReceived += 1;
+        currentAward += 1;
         
         if (awardsReceived == 2)
             rewardAd.SetActive(false);
             
-        countOfMoney += 5;
+        countOfMoney += currentAward;
+        soulsAdText.text = "+" + currentAward;
         moneyTextBox.text = countOfMoney.ToString();
     }
     public void SaveRestartData()
@@ -230,7 +239,7 @@ public class ScrollViewOfCreation : MonoBehaviour
         {
             if (showRedMobBody == false)
             {
-                currentMobBody.color = new Color(255 / 255f, 135 / 255f, 135 / 255f, 0.5f);
+                currentMobBody.color = new Color(255 / 255f, 135 / 255f, 135 / 255f, 0f);
                 showRedMobBody = true;
             }
         }
@@ -336,7 +345,6 @@ public class ScrollViewOfCreation : MonoBehaviour
 
     public void OnRemoveAll()
     {
-        VisualizeBodyMob(false);
         HoldCreation(false);
         
         List<GameObject> playerMobsCopy = new List<GameObject>(playerMobs); //slowly

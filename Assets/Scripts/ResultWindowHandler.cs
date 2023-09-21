@@ -145,6 +145,7 @@ public class ResultWindowHandler : MonoBehaviour
         winElements.SetActive(false);
         optionButton.SetActive(true);
         ScrollViewOfCreation.awardsReceived = 0;
+        ScrollViewOfCreation.currentAward = 6;
         WinConditionalHandler.gameIsRun = false;
     }
 }

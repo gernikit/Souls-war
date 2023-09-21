@@ -333,7 +333,6 @@ namespace YG
         static void AfterLoading()
         {
             _SDKEnabled = true;
-            GetDataEvent?.Invoke();
 
             if (Instance.infoYG.LocalizationEnable &&
                 Instance.infoYG.callingLanguageCheck == InfoYG.CallingLanguageCheck.EveryGameLaunch)
@@ -344,6 +343,8 @@ namespace YG
             {
                 SwitchLangEvent?.Invoke(savesData.language);
             }
+            
+            GetDataEvent?.Invoke();
         }
 
         public static Action onResetProgress;

@@ -800,7 +800,7 @@ PlayerSettings:
     PS5: TextMeshPro
     QNX: TextMeshPro
     Stadia: TextMeshPro
-    Standalone: TextMeshPro
+    Standalone: TextMeshPro;YG_PLUGIN_YANDEX_GAME
     VisionOS: TextMeshPro
     WebGL: TextMeshPro;YG_PLUGIN_YANDEX_GAME
     Windows Store Apps: TextMeshPro
