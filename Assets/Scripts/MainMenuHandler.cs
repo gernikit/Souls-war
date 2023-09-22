@@ -116,4 +116,9 @@ public class MainMenuHandler : MonoBehaviour
     {
         LocalizationManager.CurrentLanguage = ((Languages)index).ToString();
     }
+
+    public void UnlockAllLevel()
+    {
+        YandexGame.savesData.gameData.UnlockAllLevels();
+    }
 }

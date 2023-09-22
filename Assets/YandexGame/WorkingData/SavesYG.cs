@@ -115,5 +115,13 @@ namespace YG
                 levelsData[el] = 1;
             }
         }
+
+        public void UnlockAllLevels()
+        {
+            foreach (LevelType el in System.Enum.GetValues(typeof(LevelType)))
+            {
+                levelsData[el] = 30;
+            }
+        }
     }
 }
