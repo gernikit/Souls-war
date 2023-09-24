@@ -6,20 +6,22 @@ namespace YG
     [HelpURL("https://www.notion.so/PluginYG-d457b23eee604b7aa6076116aab647ed#178130fecabe4b3f81118dfe0fd88ccf")]
     public class ReviewYG : MonoBehaviour
     {
-        [Tooltip("Îòêðûâàòü îêíî àâòîðèçàöèè, åñëè ïîëüçîâàòåëü íå àâòîðèçîâàí.")]
+        [Tooltip("ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°Ñ‚ÑŒ Ð¾ÐºÐ½Ð¾ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸, ÐµÑÐ»Ð¸ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ Ð½Ðµ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½.")]
         public enum ForUnauthorized { OpenAuthDialog, ReviewNotAvailable, Ignore };
         public ForUnauthorized forUnauthorized;
 
-        [Tooltip("Àêòèâèðîâàòü îöåíêó èãðû íà ìîáèëüíûõ óñòðîéñòâàõ?")]
+        [Tooltip("ÐÐºÑ‚Ð¸Ð²Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¾Ñ†ÐµÐ½ÐºÑƒ Ð¸Ð³Ñ€Ñ‹ Ð½Ð° Ð¼Ð¾Ð±Ð¸Ð»ÑŒÐ½Ñ‹Ñ… ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ð°Ñ…?")]
         public bool showOnMobileDevice;
 
-        [Tooltip("Îáíîâëÿòü èíôîðìàöèþ ïðè êàæäîé àêòèâàöèè îáúåêòà (â OnEnable)?")]
+        [Tooltip("ÐžÐ±Ð½Ð¾Ð²Ð»ÑÑ‚ÑŒ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸ÑŽ Ð¿Ñ€Ð¸ ÐºÐ°Ð¶Ð´Ð¾Ð¹ Ð°ÐºÑ‚Ð¸Ð²Ð°Ñ†Ð¸Ð¸ Ð¾Ð±ÑŠÐµÐºÑ‚Ð° (Ð² OnEnable)?")]
         public bool updateDataOnEnable;
         [Space(15)]
         public UnityEvent ReviewAvailable;
         public UnityEvent ReviewNotAvailable;
         public UnityEvent LeftReview;
         public UnityEvent NotLeftReview;
+        
+        private const int levelForReview = 2;
 
         private void Awake() => ReviewNotAvailable.Invoke();
 
@@ -42,6 +44,8 @@ namespace YG
 #if UNITY_EDITOR
             YandexGame.EnvironmentData.reviewCanShow = true;
 #endif
+            if (YandexGame.savesData.gameData.levelsData[LevelType.Lawn] < levelForReview)
+                YandexGame.EnvironmentData.reviewCanShow = false;
 
             if (!showOnMobileDevice && (YandexGame.EnvironmentData.isMobile || YandexGame.EnvironmentData.isTablet))
                 YandexGame.EnvironmentData.reviewCanShow = false;
@@ -53,7 +57,7 @@ namespace YG
                 return;
             }
 
-            if (YandexGame.EnvironmentData.reviewCanShow)
+            if (YandexGame.EnvironmentData.reviewCanShow && YandexGame.savesData.canReviewThisSession)
                 ReviewAvailable.Invoke();
             else ReviewNotAvailable.Invoke();
         }
@@ -69,6 +73,7 @@ namespace YG
         public void ReviewShow()
         {
             ReviewNotAvailable.Invoke(); // ?
+            YandexGame.savesData.canReviewThisSession = false;
             YandexGame.EnvironmentData.reviewCanShow = false; // ?
 
             bool authDialog = true;

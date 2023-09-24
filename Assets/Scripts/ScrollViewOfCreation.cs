@@ -136,7 +136,6 @@ public class ScrollViewOfCreation : MonoBehaviour
     void Rewarded(int id)
     {
         awardsReceived += 1;
-        currentAward += 1;
         
         if (awardsReceived == 2)
             rewardAd.SetActive(false);
@@ -144,6 +143,8 @@ public class ScrollViewOfCreation : MonoBehaviour
         countOfMoney += currentAward;
         soulsAdText.text = "+" + currentAward;
         moneyTextBox.text = countOfMoney.ToString();
+        
+        currentAward += 1;
     }
     public void SaveRestartData()
     {

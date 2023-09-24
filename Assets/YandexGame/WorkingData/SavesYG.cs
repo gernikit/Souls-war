@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 namespace YG
 {
@@ -27,10 +28,12 @@ namespace YG
         // Ваши сохранения
         public GameData gameData;
         public bool isFirstLoad = true;
+        public bool canReviewThisSession = true;
 
         // Вы можете выполнить какие то действия при загрузке сохранений
         public SavesYG()
         {
+            canReviewThisSession = true;
         }
     }
     

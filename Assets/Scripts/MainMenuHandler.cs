@@ -27,6 +27,9 @@ public class MainMenuHandler : MonoBehaviour
 
     private void GetLoad()
     {
+        if (YandexGame.auth == false)
+            authButton.SetActive(true);
+        
         if (YandexGame.savesData.isFirstLoad == true)
         {
             YandexGame.savesData.isFirstLoad = false;
@@ -41,9 +44,6 @@ public class MainMenuHandler : MonoBehaviour
             volumeSlider.GetComponent<Slider>().value = YandexGame.savesData.gameData.volume;
         }
         
-        if (YandexGame.auth == true)
-            authButton.SetActive(false);
-
         DefineLanguage();
     }
 

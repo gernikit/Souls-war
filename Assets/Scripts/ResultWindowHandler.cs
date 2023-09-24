@@ -25,9 +25,14 @@ public class ResultWindowHandler : MonoBehaviour
     [SerializeField]
     public GameObject timerHoldOn; //must be set in inspector!!! (optional)
 
+    [SerializeField] private GameObject reviewWindow;
+
     private void Start()
     {
         winElements.SetActive(false);
+        
+        if (reviewWindow != null)
+            reviewWindow.SetActive(false);
     }
     public GameObject GetResultElems()
     {
@@ -112,6 +117,11 @@ public class ResultWindowHandler : MonoBehaviour
         YandexGame.SaveProgress();
     }
 
+    public void OnShowReviewLater()
+    {
+        YandexGame.savesData.canReviewThisSession = false;
+    }
+    
     public void OnResultAction()
     {
         Mob.gameIsStop = true;
