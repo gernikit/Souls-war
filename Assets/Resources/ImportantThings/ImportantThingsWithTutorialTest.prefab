@@ -10188,10 +10188,10 @@ RectTransform:
   - {fileID: 9182176700187398020}
   m_Father: {fileID: 3747915113035561588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 64.175, y: -279}
-  m_SizeDelta: {x: 289.63, y: 39.15736}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 64.17499, y: -229.00003}
+  m_SizeDelta: {x: 389.63, y: 139.15736}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1837318847120652958
 CanvasRenderer:
@@ -17343,6 +17343,7 @@ MonoBehaviour:
   cameraHandler: {fileID: 0}
   mobsButtonContent: {fileID: 1349853856534024895}
   unavailableMobs: 0600000002000000030000000400000005000000
+  soulsAdText: {fileID: 0}
   bodyImagePool: []
   currentMobBody: {fileID: 0}
   rewardAd: {fileID: 0}
@@ -24585,8 +24586,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 9}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.08999634, y: 9}
+  m_SizeDelta: {x: -19.3, y: -34.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5607596399320780565
 CanvasRenderer:
@@ -25665,9 +25666,9 @@ RectTransform:
   - {fileID: 5607596400880541526}
   m_Father: {fileID: 5607596401100419326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 804.35, y: -63.92}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5607596399542374899
@@ -25993,9 +25994,9 @@ RectTransform:
   - {fileID: 5607596400327755671}
   m_Father: {fileID: 5607596401100419326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 46, y: -63.92}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5607596399703684963
@@ -27878,7 +27879,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5607596400608563193}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9995391
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -29797,6 +29798,7 @@ MonoBehaviour:
   mainImage: {fileID: 5607596401132682918}
   optionButton: {fileID: 5607596400674682970}
   timerHoldOn: {fileID: 0}
+  reviewWindow: {fileID: 0}
 --- !u!1 &5607596400820795687
 GameObject:
   m_ObjectHideFlags: 0
@@ -30106,9 +30108,9 @@ RectTransform:
   - {fileID: 5607596401100085357}
   m_Father: {fileID: 5607596401100419326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 501.01, y: -63.92}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5607596400867094228
@@ -30662,9 +30664,9 @@ RectTransform:
   - {fileID: 5607596399432458368}
   m_Father: {fileID: 5607596401100419326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 197.67, y: -63.92}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5607596400940175381
@@ -31115,9 +31117,9 @@ RectTransform:
   - {fileID: 5607596400729789567}
   m_Father: {fileID: 5607596401100419326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.34, y: -63.92}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5607596400980831672
@@ -31881,7 +31883,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 3.850006, y: -79.07}
+  m_AnchoredPosition: {x: 3.850006, y: -79.0516}
   m_SizeDelta: {x: 606.95, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5607596401197588811
@@ -32634,9 +32636,9 @@ RectTransform:
   - {fileID: 5607596399471274434}
   m_Father: {fileID: 5607596401100419326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 652.68, y: -63.92}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5607596401282028371
@@ -32968,6 +32970,7 @@ MonoBehaviour:
   cameraHandler: {fileID: 5607596399897256263}
   mobsButtonContent: {fileID: 5607596401100419327}
   unavailableMobs: 0200000003000000040000000500000006000000
+  soulsAdText: {fileID: 0}
   bodyImagePool:
   - {fileID: 21300000, guid: 1fe2165b5cb810843b97c509fa18feef, type: 3}
   - {fileID: 21300000, guid: ef2f325f729cbd740a3ee9fc7bec69fc, type: 3}
@@ -37678,6 +37681,7 @@ MonoBehaviour:
   cameraHandler: {fileID: 0}
   mobsButtonContent: {fileID: 894405688914896361}
   unavailableMobs: 0600000002000000030000000400000005000000
+  soulsAdText: {fileID: 0}
   bodyImagePool: []
   currentMobBody: {fileID: 0}
   rewardAd: {fileID: 0}
@@ -38722,10 +38726,10 @@ RectTransform:
   - {fileID: 8662944464872168913}
   m_Father: {fileID: 3747915113035561588}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 78, y: 242}
-  m_SizeDelta: {x: 317.28, y: 48.37736}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 78, y: 192}
+  m_SizeDelta: {x: 417.28, y: 148.37737}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3683559368777554653
 CanvasRenderer:
@@ -40171,6 +40175,7 @@ MonoBehaviour:
   cameraHandler: {fileID: 0}
   mobsButtonContent: {fileID: 1655677639828985544}
   unavailableMobs: 0600000002000000030000000400000005000000
+  soulsAdText: {fileID: 0}
   bodyImagePool: []
   currentMobBody: {fileID: 0}
   rewardAd: {fileID: 0}
