@@ -26,6 +26,7 @@ public class ResultWindowHandler : MonoBehaviour
     public GameObject timerHoldOn; //must be set in inspector!!! (optional)
 
     [SerializeField] private GameObject reviewWindow;
+    [SerializeField] private GameObject rateButton;
 
     private void Start()
     {
@@ -33,6 +34,9 @@ public class ResultWindowHandler : MonoBehaviour
         
         if (reviewWindow != null)
             reviewWindow.SetActive(false);
+        
+        if (rateButton != null)
+            rateButton.SetActive(false);
     }
     public GameObject GetResultElems()
     {
@@ -43,6 +47,11 @@ public class ResultWindowHandler : MonoBehaviour
         Mob.gameIsStop = true;
         Time.timeScale = 0f;
         MusicPlayer.PlayWinMusic();
+        
+        if (CanShowReviewWindow() == true)
+            SetVisibilityReviewWindow(true);
+        if (CanShowReviewButton() == true)
+            SetVisibilityReviewButton(true);
 
         mainImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites\\Cup");
         controlButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites\\ButtonNext1");
@@ -115,6 +124,25 @@ public class ResultWindowHandler : MonoBehaviour
             timerHoldOn.SetActive(false);
         winElements.SetActive(true);
         YandexGame.SaveProgress();
+    }
+
+    public void SetVisibilityReviewButton(bool show)
+    {
+        rateButton.SetActive(show);
+    }
+    public void SetVisibilityReviewWindow(bool show)
+    {
+        reviewWindow.SetActive(show); 
+    }
+
+    private bool CanShowReviewButton()
+    {
+        return YandexGame.EnvironmentData.reviewCanShow;
+    }
+
+    private bool CanShowReviewWindow()
+    {
+        return YandexGame.EnvironmentData.reviewCanShow && YandexGame.savesData.canReviewThisSession;
     }
 
     public void OnShowReviewLater()

@@ -13,8 +13,12 @@ public class StartGame : MonoBehaviour
     [SerializeField]
     private GameObject dungerousMark;//must be set in inspector!!!
 
+    [SerializeField] private GameCameraHandler cameraHandler;
+    
     public void OnStart()
     {
+        cameraHandler.CanMove = true;
+        
         scrollOfCreation.GetComponent<ScrollViewOfCreation>().SaveRestartData();
 
         MobTargets.OnStartGame();
