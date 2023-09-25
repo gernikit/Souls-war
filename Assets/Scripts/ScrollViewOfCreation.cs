@@ -141,10 +141,10 @@ public class ScrollViewOfCreation : MonoBehaviour
             rewardAd.SetActive(false);
             
         countOfMoney += currentAward;
+        currentAward += 1;
+        
         soulsAdText.text = "+" + currentAward;
         moneyTextBox.text = countOfMoney.ToString();
-        
-        currentAward += 1;
     }
     public void SaveRestartData()
     {
