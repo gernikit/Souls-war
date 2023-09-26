@@ -146,8 +146,8 @@ public class TutorialHandler : MonoBehaviour
             buttonSkip.SetActive(false);
         windowSteps[currentStep].SetActive(false);
         currentStep++;
-        if (currentStep == 5)//count of souls
-            countOfSouls.GetComponent<Animator>().enabled = true;
+        //if (currentStep == 5)//count of souls
+        //    countOfSouls.GetComponent<Animator>().enabled = true;
         if (currentStep <= windowSteps.Count)
             windowSteps[currentStep].SetActive(true);
         else
