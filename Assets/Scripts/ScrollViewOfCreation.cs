@@ -331,8 +331,17 @@ public class ScrollViewOfCreation : MonoBehaviour
 
         foreach (TypeOfMob el in unavailableMobs)
         {
-            mobsButtonContent.transform.Find(el.ToString()).gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mobs\\Icons\\" + el.ToString() + "Locked");
-            mobsButtonContent.transform.Find(el.ToString()).gameObject.GetComponent<Button>().interactable = false;
+            for (int i = 0; i < mobsButtonContent.transform.childCount; i++)
+            {
+                Transform layoutItem = mobsButtonContent.transform.GetChild(i);
+                Transform icon= layoutItem.Find(el.ToString());
+
+                if (icon != null)
+                {
+                    icon.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>("Mobs\\Icons\\" + el.ToString() + "Locked");
+                    icon.gameObject.GetComponent<Button>().interactable = false;
+                }
+            }
         }
     }
 
