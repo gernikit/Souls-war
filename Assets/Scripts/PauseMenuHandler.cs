@@ -20,6 +20,7 @@ public class PauseMenuHandler : MonoBehaviour
     private void PauseGame()
     {
         pause = !pause;
+        
         if (pause)
         {
             pauseMenuElements.SetActive(true);
@@ -47,10 +48,17 @@ public class PauseMenuHandler : MonoBehaviour
         {
             pauseMenuElements.SetActive(false);
             pauseMenuButton.SetActive(true);
-            X2Button.SetActive(true);
+            
             if (Mob.gameIsStop == true)
+            {
                 otherElements.SetActive(true);
-            Time.timeScale = 1f;
+            }
+            else
+            {
+                X2Button.SetActive(true);
+            }
+            
+            Time.timeScale = X2Button.activeSelf ? X2Button.GetComponent<TimeSpeedHandler>().GetCurrentSpeed() : 1f;
         }
     }
 

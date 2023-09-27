@@ -21,7 +21,7 @@ namespace YG
         public UnityEvent LeftReview;
         public UnityEvent NotLeftReview;
         
-        private const int levelForReview = 3;
+        private const int levelForReview = 2;
 
         private void Awake() => ReviewNotAvailable.Invoke();
 
