@@ -127,5 +127,6 @@ public class MainMenuHandler : MonoBehaviour
     public void UnlockAllLevel()
     {
         YandexGame.savesData.gameData.UnlockAllLevels();
+        YandexGame.savesData.isLastLevelWon = true;
     }
 }

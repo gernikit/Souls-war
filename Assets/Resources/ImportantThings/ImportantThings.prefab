@@ -581,7 +581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3586104616258320146
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6876,7 +6876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6240194226633569315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9517,6 +9517,7 @@ MonoBehaviour:
   timerHoldOn: {fileID: 0}
   reviewWindow: {fileID: 680985135156828439}
   rateButton: {fileID: 1570202908220351256}
+  reviewYG: {fileID: 6515502643026990735}
 --- !u!1 &6240194227323368961
 GameObject:
   m_ObjectHideFlags: 0
@@ -11887,6 +11888,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ReviewYG
       objectReference: {fileID: 0}
+    - target: {fileID: 4599446247094708749, guid: a1dfdbb0103bfba439419b727773e9b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4599446247503720869, guid: a1dfdbb0103bfba439419b727773e9b4, type: 3}
@@ -11903,9 +11908,14 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4599446247094708748, guid: a1dfdbb0103bfba439419b727773e9b4, type: 3}
   m_PrefabInstance: {fileID: 7331636838738394242}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6515502643026990735}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a50aa89408dd46a4d9e4c2ed0c463947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6515502643026990735 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4599446247094708749, guid: a1dfdbb0103bfba439419b727773e9b4, type: 3}
+  m_PrefabInstance: {fileID: 7331636838738394242}
+  m_PrefabAsset: {fileID: 0}

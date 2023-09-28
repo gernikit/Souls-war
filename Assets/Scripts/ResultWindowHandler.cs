@@ -27,6 +27,7 @@ public class ResultWindowHandler : MonoBehaviour
 
     [SerializeField] private GameObject reviewWindow;
     [SerializeField] private GameObject rateButton;
+    [SerializeField] private GameObject reviewYG;
 
     private void Start()
     {
@@ -48,23 +49,40 @@ public class ResultWindowHandler : MonoBehaviour
         Time.timeScale = 0f;
         MusicPlayer.PlayWinMusic();
         
+        /*
         if (CanShowReviewWindow() == true)
             SetVisibilityReviewWindow(true);
         if (CanShowReviewButton() == true)
             SetVisibilityReviewButton(true);
+            */
+        
+        reviewYG.SetActive(true);
+        
+        if (CanShowReviewButton() == true)
+            SetVisibilityReviewButton(true);
 
         mainImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites\\Cup");
-        controlButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites\\ButtonNext1");
-        SpriteState state = new SpriteState();
-        state.pressedSprite = Resources.Load<Sprite>("Sprites\\ButtonNext2");
-        controlButton.GetComponent<Button>().spriteState = state;
-
+        
+        if (LevelsController.currentLevel == YandexGame.savesData.gameData.maxLevelsData[LevelsController.typeLevel])
+        {
+            controlButton.SetActive(false);
+            YandexGame.savesData.isLastLevelWon = true;
+        }
+        else
+        {
+            controlButton.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites\\ButtonNext1");
+            SpriteState state = new SpriteState();
+            state.pressedSprite = Resources.Load<Sprite>("Sprites\\ButtonNext2");
+            controlButton.GetComponent<Button>().spriteState = state;
+        }
+        
         resultText.GetComponent<Localize>().SetTerm("You have won");
         IsWin = true;
         optionButton.SetActive(false);
         if (timerHoldOn != null)
             timerHoldOn.SetActive(false);
         winElements.SetActive(true);
+        
         if (YandexGame.savesData.gameData.levelsData[LevelsController.typeLevel] < LevelsController.currentLevel + 1 &&
             YandexGame.savesData.gameData.maxLevelsData[LevelsController.typeLevel] >= LevelsController.currentLevel + 1)
             YandexGame.savesData.gameData.levelsData[LevelsController.typeLevel] = LevelsController.currentLevel + 1;

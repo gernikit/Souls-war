@@ -14,14 +14,15 @@ public class LevelsController : MonoBehaviour
     static public LevelType typeLevel = LevelType.Lawn;
     static public int currentLevel = 1;
 
-    [SerializeField]
-    private GameObject levelInput;
-    [SerializeField]
-    private GameObject levelIcon;
+    [SerializeField] private GameObject levelInput;
+    [SerializeField] private GameObject levelIcon;
+    [SerializeField] private GameObject lastLevelReach;
 
     private void Start()
     {
+        lastLevelReach.SetActive(false);
         currentLevel = YandexGame.savesData.gameData.levelsData[typeLevel];
+        EnableLastLevelReach();
         levelInput.GetComponent<InputField>().text = currentLevel.ToString();
         levelIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Levels\\" + typeLevel.ToString() + "\\Icons\\" + typeLevel.ToString() + currentLevel.ToString());
     }
@@ -29,7 +30,16 @@ public class LevelsController : MonoBehaviour
     {
         levelInput.GetComponent<InputField>().text = value;
         currentLevel = int.Parse(value);
+        EnableLastLevelReach();
         levelIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Levels\\" + typeLevel.ToString() + "\\Icons\\" + typeLevel.ToString() + currentLevel.ToString());
+    }
+
+    private void EnableLastLevelReach()
+    {
+        if (YandexGame.savesData.isLastLevelWon && currentLevel == YandexGame.savesData.gameData.maxLevelsData[typeLevel])
+            lastLevelReach.SetActive(true);
+        else
+            lastLevelReach.SetActive(false);
     }
     private bool IsValidLevelValue(int value)
     {
@@ -70,5 +80,4 @@ public class LevelsController : MonoBehaviour
         if (currentLevel <= YandexGame.savesData.gameData.levelsData[typeLevel])
             SceneManager.LoadScene(typeLevel.ToString() + currentLevel.ToString());
     }
-
 }

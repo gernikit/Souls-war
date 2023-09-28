@@ -27,6 +27,7 @@ namespace YG
 
         // Ваши сохранения
         public GameData gameData;
+        public bool isLastLevelWon = false;
         public bool isFirstLoad = true;
         public bool canReviewThisSession = true;
 
