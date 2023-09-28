@@ -21,9 +21,16 @@ public class MainMenuHandler : MonoBehaviour
         OnMainMenuShow();
     }
 
-    private void OnEnable() => YandexGame.GetDataEvent += GetLoad;
+    private void OnEnable()
+    {
+        YandexGame.GetDataEvent += GetLoad;
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.GetDataEvent -= GetLoad;
+    }
     
-    private void OnDisable() => YandexGame.GetDataEvent -= GetLoad;
 
     private void GetLoad()
     {
