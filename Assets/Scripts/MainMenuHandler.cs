@@ -19,6 +19,10 @@ public class MainMenuHandler : MonoBehaviour
             GetLoad();
 
         OnMainMenuShow();
+        
+        ScrollViewOfCreation.awardsReceived = 0;
+        ScrollViewOfCreation.currentAward = 6;
+        ScrollViewOfCreation.untilNextReward = 3;
     }
 
     private void OnEnable()

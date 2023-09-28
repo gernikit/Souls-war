@@ -57,6 +57,7 @@ public class ScrollViewOfCreation : MonoBehaviour
 {
     public static bool restartLevel = false;
     public static int awardsReceived = 0;
+    public static int untilNextReward = 3;
     public static int currentAward = 6;
     
 
@@ -104,10 +105,11 @@ public class ScrollViewOfCreation : MonoBehaviour
 
         if (restartLevel)
         {
-            if (awardsReceived < 2 && rewardAd != null)
+            if (awardsReceived < 2 && rewardAd != null && untilNextReward != 0)
             {
                 soulsAdText.text = "+" + currentAward.ToString();
                 rewardAd.SetActive(true);
+                untilNextReward = 3;
             }
             
             restartLevel = false;
@@ -136,6 +138,7 @@ public class ScrollViewOfCreation : MonoBehaviour
     void Rewarded(int id)
     {
         awardsReceived += 1;
+        untilNextReward -= 1;
         
         if (awardsReceived == 2)
             rewardAd.SetActive(false);
@@ -143,8 +146,8 @@ public class ScrollViewOfCreation : MonoBehaviour
         countOfMoney += currentAward;
         currentAward += 1;
         
-        soulsAdText.text = "+" + currentAward;
         moneyTextBox.text = countOfMoney.ToString();
+        rewardAd.SetActive(false);
     }
     public void SaveRestartData()
     {

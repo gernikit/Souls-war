@@ -56,7 +56,8 @@ public class ResultWindowHandler : MonoBehaviour
             SetVisibilityReviewButton(true);
             */
         
-        reviewYG.SetActive(true);
+        if (reviewYG != null)
+            reviewYG.SetActive(true);
         
         if (CanShowReviewButton() == true)
             SetVisibilityReviewButton(true);
@@ -150,7 +151,8 @@ public class ResultWindowHandler : MonoBehaviour
     }
     public void SetVisibilityReviewWindow(bool show)
     {
-        reviewWindow.SetActive(show); 
+        if (reviewWindow != null)
+            reviewWindow.SetActive(show); 
     }
 
     private bool CanShowReviewButton()
@@ -181,7 +183,10 @@ public class ResultWindowHandler : MonoBehaviour
             if (YandexGame.savesData.gameData.maxLevelsData[LevelsController.typeLevel] >= LevelsController.currentLevel + 1)
                 LevelsController.currentLevel += 1;
             SceneManager.LoadScene(LevelsController.typeLevel.ToString() + (LevelsController.currentLevel).ToString());
+            
             ScrollViewOfCreation.awardsReceived = 0;
+            ScrollViewOfCreation.currentAward = 6;
+            ScrollViewOfCreation.untilNextReward = 3;
         }
         else//lose
         {
@@ -200,8 +205,6 @@ public class ResultWindowHandler : MonoBehaviour
         Mob.gameIsStop = true; //important!!!
         winElements.SetActive(false);
         optionButton.SetActive(true);
-        ScrollViewOfCreation.awardsReceived = 0;
-        ScrollViewOfCreation.currentAward = 6;
         WinConditionalHandler.gameIsRun = false;
     }
 }
