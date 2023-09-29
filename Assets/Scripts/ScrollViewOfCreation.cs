@@ -105,7 +105,9 @@ public class ScrollViewOfCreation : MonoBehaviour
 
         if (restartLevel)
         {
-            if (awardsReceived < 2 && rewardAd != null && untilNextReward != 0)
+            untilNextReward -= 1;
+            
+            if (awardsReceived < 2 && rewardAd != null && untilNextReward == 0)
             {
                 soulsAdText.text = "+" + currentAward.ToString();
                 rewardAd.SetActive(true);
@@ -138,7 +140,7 @@ public class ScrollViewOfCreation : MonoBehaviour
     void Rewarded(int id)
     {
         awardsReceived += 1;
-        untilNextReward -= 1;
+        untilNextReward = 3;
         
         if (awardsReceived == 2)
             rewardAd.SetActive(false);

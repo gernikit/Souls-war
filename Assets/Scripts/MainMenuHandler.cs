@@ -12,6 +12,7 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] private GameObject glossary;
     [SerializeField] private GameObject volumeSlider;
     [SerializeField] private GameObject authButton;
+    [SerializeField] private GameObject youAreAuth;
 
     [SerializeField] private YandexGame yandexGame;
 
@@ -46,7 +47,9 @@ public class MainMenuHandler : MonoBehaviour
     {
         if (YandexGame.auth == false)
             authButton.SetActive(true);
-        
+        else
+            youAreAuth.SetActive(true);
+
         if (YandexGame.savesData.isFirstLoad == true)
         {
             yandexGame.infoYG.fullscreenAdInterval = AdIntervalFistSession;
