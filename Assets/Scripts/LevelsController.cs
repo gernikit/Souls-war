@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -18,7 +19,7 @@ public class LevelsController : MonoBehaviour
     [SerializeField] private GameObject levelIcon;
     [SerializeField] private GameObject lastLevelReach;
 
-    private void Start()
+    private void OnEnable()
     {
         lastLevelReach.SetActive(false);
         currentLevel = YandexGame.savesData.gameData.levelsData[typeLevel];
@@ -26,6 +27,7 @@ public class LevelsController : MonoBehaviour
         levelInput.GetComponent<InputField>().text = currentLevel.ToString();
         levelIcon.GetComponent<Image>().sprite = Resources.Load<Sprite>("Levels\\" + typeLevel.ToString() + "\\Icons\\" + typeLevel.ToString() + currentLevel.ToString());
     }
+    
     public void ChangeCurrentLevelValue(string value)
     {
         levelInput.GetComponent<InputField>().text = value;

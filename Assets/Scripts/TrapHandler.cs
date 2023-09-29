@@ -117,8 +117,10 @@ public class TrapHandler : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collider)
     {       
+        if (collider.tag != "Footing")
+            return;
+        
         if (typeOfTrap == TypesOfTrap.Spikes || typeOfTrap == TypesOfTrap.Spears &&
-            collider.tag == "Footing" &&
             collider.transform.parent.gameObject.tag == "Player" || collider.transform.parent.gameObject.tag == "Enemy" &&
             closeEnemyColliders.Contains(collider.transform.parent.gameObject.GetComponent<CapsuleCollider2D>()))
         {
