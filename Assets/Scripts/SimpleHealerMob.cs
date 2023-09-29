@@ -8,6 +8,9 @@ public class SimpleHealerMob : Mob
     [SerializeField]
     protected CircleCollider2D auraCollider;//must be set in inspector!!!
 
+    [SerializeField] protected ParticleSystem healDone;
+    [SerializeField] protected ParticleSystem breakingHeart;
+    
     protected List<Mob> closestAllyTargets;//maybe remove for closestAllyTargetsNoMaxHP
     protected List<Mob> closestAllyTargetsNoMaxHP;
     protected bool noAllyNearby = false;
@@ -159,7 +162,9 @@ public class SimpleHealerMob : Mob
         {
             animator.SetTrigger("SimpleHealing");
             target.GetComponent<Mob>().TakeDamage(attackDamage);
-            Instantiate(ParticleManager.particlesForMobs[ParticleTypesForMob.BreakingHeart], target.gameObject.transform);//maybe hard for perfomance
+            //Instantiate(ParticleManager.particlesForMobs[ParticleTypesForMob.BreakingHeart], target.gameObject.transform);//maybe hard for perfomance
+            breakingHeart.gameObject.transform.position = target.gameObject.transform.position;
+            breakingHeart.gameObject.SetActive(true);
             timeBtwAttack = startTimeBtwAttack;
         }
     }
