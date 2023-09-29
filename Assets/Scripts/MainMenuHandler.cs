@@ -12,6 +12,12 @@ public class MainMenuHandler : MonoBehaviour
     [SerializeField] private GameObject glossary;
     [SerializeField] private GameObject volumeSlider;
     [SerializeField] private GameObject authButton;
+
+    [SerializeField] private YandexGame yandexGame;
+
+    private const int AdIntervalFistSession = 180;
+    private const int AdInterval = 120;
+    
     
     void Start()
     {
@@ -43,6 +49,7 @@ public class MainMenuHandler : MonoBehaviour
         
         if (YandexGame.savesData.isFirstLoad == true)
         {
+            yandexGame.infoYG.fullscreenAdInterval = AdIntervalFistSession;
             YandexGame.savesData.isFirstLoad = false;
             YandexGame.savesData.gameData = new GameData();
             YandexGame.savesData.gameData.SetDefaultData();
@@ -51,6 +58,7 @@ public class MainMenuHandler : MonoBehaviour
         }
         else
         {
+            yandexGame.infoYG.fullscreenAdInterval = AdInterval;
             volumeSlider.GetComponent<Slider>().onValueChanged.Invoke(YandexGame.savesData.gameData.volume);
             volumeSlider.GetComponent<Slider>().value = YandexGame.savesData.gameData.volume;
         }

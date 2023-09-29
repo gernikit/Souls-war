@@ -14723,6 +14723,7 @@ MonoBehaviour:
   glossary: {fileID: 1692141041}
   volumeSlider: {fileID: 658073598}
   authButton: {fileID: 813239922}
+  yandexGame: {fileID: 410798096}
 --- !u!1 &1804331225
 GameObject:
   m_ObjectHideFlags: 0
