@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,8 +6,8 @@ public class SimpleHealerMob : Mob
 {
     protected bool canHeal = false;
 
-    [SerializeField]
-    protected CircleCollider2D auraCollider;//must be set in inspector!!!
+    [SerializeField] protected CircleCollider2D auraCollider;//must be set in inspector!!!
+    [SerializeField] protected HealingAura healingAura;
 
     [SerializeField] protected ParticleSystem healDone;
     [SerializeField] protected ParticleSystem breakingHeart;
@@ -27,10 +28,23 @@ public class SimpleHealerMob : Mob
     [SerializeField]
     protected int maxHealingTargets = 5;
 
+    private void OnEnable()
+    {
+        healingAura.AuraTriggerEnter += OnAuraTriggerEnter;
+        healingAura.AuraTriggerExit += OnAuraTriggerExit;
+    }
+
+    private void OnDisable()
+    {
+        healingAura.AuraTriggerEnter -= OnAuraTriggerEnter;
+        healingAura.AuraTriggerExit -= OnAuraTriggerExit;
+    }
+
     private void Start()
     {
         Init();
         InitSimpleHealer();
+        auraCollider.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -185,18 +199,20 @@ public class SimpleHealerMob : Mob
         return mob;
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)//dont work with losestAllyTargetsNoMaxHP because not updating!!!
+    private void OnAuraTriggerEnter(Collider2D collider)
     {
+        if  (collider.gameObject.layer != 6)
+            return;
+        
         if (collider.tag == gameObject.tag &&
-            collider.gameObject.layer == 6 &&
             !closestAllyTargets.Contains(collider.gameObject.GetComponent<Mob>()) &&
             collider.gameObject.GetComponent<Mob>().TypeOfMob != TypeOfMob.Healer)//no heals another healers
         {
             closestAllyTargets.Add(collider.gameObject.GetComponent<Mob>());
         }
     }
-
-    private void OnTriggerExit2D(Collider2D collider)
+    
+    private void OnAuraTriggerExit(Collider2D collider)
     {
         if (collider.tag == gameObject.tag && collider.gameObject.layer == 6)
         {
