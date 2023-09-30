@@ -123,7 +123,6 @@ public class ResultWindowHandler : MonoBehaviour
         if (timerHoldOn != null)
             timerHoldOn.SetActive(false);
         winElements.SetActive(true);
-        YandexGame.SaveProgress();
     }
 
     public void LoadLoseCustomBattle()
@@ -142,7 +141,6 @@ public class ResultWindowHandler : MonoBehaviour
         if (timerHoldOn != null)
             timerHoldOn.SetActive(false);
         winElements.SetActive(true);
-        YandexGame.SaveProgress();
     }
 
     public void SetVisibilityReviewButton(bool show)
