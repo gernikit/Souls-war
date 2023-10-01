@@ -259,15 +259,28 @@ public class Mob : MonoBehaviour
             if (nearest == null)
                 return null;
 
+            Vector2 myPosition = gameObject.transform.position;
+            float nearestSqrDistance = ((Vector2)nearest.transform.position - myPosition).sqrMagnitude;
+
             for (int j = 0; j < targetsList.Count; j++)
             {
                 if (targetsList[j] != null)
                 {
+                    float sqrDistance = ((Vector2)targetsList[j].transform.position - myPosition).sqrMagnitude;
+
+                    if (sqrDistance < nearestSqrDistance)
+                    {
+                        nearest = targetsList[j];
+                        nearestSqrDistance = sqrDistance;
+                    }
+                    
+                    /*
                     if (Vector2.Distance(targetsList[j].transform.position, gameObject.transform.position) <
                        Vector2.Distance(nearest.transform.position, gameObject.transform.position))
                     {
                         nearest = targetsList[j];
                     }
+                    */
                 }
             }
             return nearest.transform;
@@ -361,17 +374,30 @@ public class Mob : MonoBehaviour
 
             if (nearest == null)
                 return null;
+            
+            Vector2 myPosition = gameObject.transform.position;
+            float nearestSqrDistance = ((Vector2)nearest.transform.position - myPosition).sqrMagnitude;
 
             for (int j = 0; j < allyTargetsList.Count; j++)
             {
                 if (allyTargetsList[j] != null && allyTargetsList[j] != this.gameObject)
                 {
+                    float sqrDistance = ((Vector2)allyTargetsList[j].transform.position - myPosition).sqrMagnitude;
+
+                    if (sqrDistance < nearestSqrDistance && condition(allyTargetsList[j].GetComponent<Mob>()))
+                    {
+                        nearest = allyTargetsList[j];
+                        nearestSqrDistance = sqrDistance;
+                    }
+                    
+                    /*
                     if (Vector2.Distance(allyTargetsList[j].transform.position, gameObject.transform.position) <
                        Vector2.Distance(nearest.transform.position, gameObject.transform.position)&&
                        condition(allyTargetsList[j].GetComponent<Mob>()))
                     {
                         nearest = allyTargetsList[j];
                     }
+                    */
                 }
             }
 
