@@ -305,15 +305,29 @@ public class Mob : MonoBehaviour
 
         if (nearest == null)
             return null;
+        
+        Vector2 myPosition = gameObject.transform.position;
+        float nearestSqrDistance = ((Vector2)nearest.transform.position - myPosition).sqrMagnitude;
 
         for (int i = 0; i < WinConditionalHandler.targetsDefence.Count; i++)
         {
-            if (Vector2.Distance(WinConditionalHandler.targetsDefence[i].transform.position, gameObject.transform.position) <
-                Vector2.Distance(nearest.transform.position, gameObject.transform.position))
+            float sqrDistance = ((Vector2)WinConditionalHandler.targetsDefence[i].transform.position - myPosition).sqrMagnitude;
+
+            if (sqrDistance < nearestSqrDistance)
             {
                 nearest = WinConditionalHandler.targetsDefence[i];
+                nearestSqrDistance = sqrDistance;
             }
         }
+        
+        // for (int i = 0; i < WinConditionalHandler.targetsDefence.Count; i++)
+        // {
+        //     if (Vector2.Distance(WinConditionalHandler.targetsDefence[i].transform.position, gameObject.transform.position) <
+        //         Vector2.Distance(nearest.transform.position, gameObject.transform.position))
+        //     {
+        //         nearest = WinConditionalHandler.targetsDefence[i];
+        //     }
+        // }
 
         return nearest.transform;
     }

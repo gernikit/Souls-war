@@ -58,7 +58,7 @@ public class SimpleMeleeMob : Mob
 
         proxy.position = model.position;
 
-        model.GetComponent<Rigidbody2D>().velocity = rvoController.velocity;
+        rb.velocity = rvoController.velocity;
     }
 
     public void AfterAttack()
