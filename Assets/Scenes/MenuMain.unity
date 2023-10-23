@@ -9288,12 +9288,12 @@ GameObject:
   - component: {fileID: 1164372917}
   - component: {fileID: 1164372916}
   m_Layer: 5
-  m_Name: Reset
+  m_Name: DeleteSaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1164372915
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13260,12 +13260,12 @@ GameObject:
   - component: {fileID: 1590405493}
   - component: {fileID: 1590405492}
   m_Layer: 5
-  m_Name: Reset (1)
+  m_Name: Unlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1590405491
 RectTransform:
   m_ObjectHideFlags: 0
