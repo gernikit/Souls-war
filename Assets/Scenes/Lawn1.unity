@@ -914,14 +914,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 0.45490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f92be880f5c8d814ea35a8c182334977, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b92cb9c4d04ce1d4fae5e2d785a6ac02, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1046,14 +1046,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 0.45490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 71d9fe23123838f4fa5115ce985f1072, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7eeafecf76c512a46b4e91d8fc69f8bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7632,14 +7632,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 0.4627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aac04a2994e9f464da8a15e3dbceea18, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f9711a7a2e55b34ba0c5d6492c809b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8693,14 +8693,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 0.45490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e9bac78f8c3d06e42a887ada335d4770, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 31fc43a72ab62e64f92694a09b7f0553, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9919,7 +9919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.027, y: 0.085}
   m_AnchorMax: {x: 0.9523835, y: 0.96500003}
-  m_AnchoredPosition: {x: 7.1500244, y: -5}
+  m_AnchoredPosition: {x: 7.1500244, y: -4.9999924}
   m_SizeDelta: {x: 5.590027, y: 0.13999939}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1240414432
@@ -10870,14 +10870,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.4509804, g: 0.4509804, b: 0.4509804, a: 0.45490196}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7de1940cc0c292e43bcf1dc91121f4ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 39a302cd36308aa4ba4af33815240f42, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19161,7 +19161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &94472486573063287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21080,7 +21080,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.027, y: 0.085}
   m_AnchorMax: {x: 0.9523835, y: 0.96500003}
-  m_AnchoredPosition: {x: 7.1500244, y: -5}
+  m_AnchoredPosition: {x: 7.1500244, y: -4.9999924}
   m_SizeDelta: {x: 5.590027, y: 0.13999939}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &662947557354707544
@@ -36677,7 +36677,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &4163202497858836283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44117,7 +44117,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 5607596401006649199}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9975776
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -47322,7 +47322,7 @@ MonoBehaviour:
   moneyTextBox: {fileID: 5607596399647882162}
   cameraHandler: {fileID: 5607596399440458193}
   mobsButtonContent: {fileID: 5607596400382812265}
-  unavailableMobs: 
+  unavailableMobs: 0200000003000000040000000500000006000000
   soulsAdText: {fileID: 0}
   bodyImagePool:
   - {fileID: 21300000, guid: 1fe2165b5cb810843b97c509fa18feef, type: 3}
@@ -48155,7 +48155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.19700001}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.7199707, y: -17.877731}
+  m_AnchoredPosition: {x: 3.7199707, y: -17.877613}
   m_SizeDelta: {x: -6.96, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5607596400825004481
@@ -52495,7 +52495,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 8.08}
+  m_AnchoredPosition: {x: 0, y: 8.080002}
   m_SizeDelta: {x: 0, y: -16.17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6047344631258103771
@@ -60147,6 +60147,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5607596399976095154}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!224 &7948075733593858621
 RectTransform:
   m_ObjectHideFlags: 0
@@ -64647,7 +64659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9112912510185496511
 RectTransform:
   m_ObjectHideFlags: 0
