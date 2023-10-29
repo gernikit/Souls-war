@@ -117,11 +117,7 @@ public class TutorialHandler : MonoBehaviour
         yield return new WaitForSeconds(sec);
         if (currentStep <= windowSteps.Count)
         {
-            if (currentStep == 9)//X2 Scale  
-            {
-                X2Scaler.SetActive(true);
-            }
-            else if (currentStep == 10)//HpBar
+            if (currentStep == 10)//HpBar
             {
                 Time.timeScale = 0.5f;
                 hpPanel.GetComponent<PanelHPHandler>().interactable = true;
