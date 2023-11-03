@@ -24,8 +24,6 @@ public class MainMenuHandler : MonoBehaviour
     {
         if (YandexGame.SDKEnabled)
             GetLoad();
-
-        OnMainMenuShow();
         
         ScrollViewOfCreation.awardsReceived = 0;
         ScrollViewOfCreation.currentAward = 6;
@@ -67,6 +65,7 @@ public class MainMenuHandler : MonoBehaviour
         }
         
         DefineLanguage();
+        OnMainMenuShow();
     }
 
     private void DefineLanguage()

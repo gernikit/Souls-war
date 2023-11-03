@@ -292,5 +292,5 @@ MonoBehaviour:
   backgroundImageFormat: 3
   pixelRatioEnable: 0
   pixelRatioValue: 1
-  SDKStartDelay: 0
+  SDKStartDelay: 60
   staticRBTInGame: 0
