@@ -9,30 +9,32 @@ public class ModesWinHandler : MonoBehaviour
     private Button cusstomButton; //must be set in inspetor
     [SerializeField]
     private int levelUnlockCusttomBattle = 20;
+    [SerializeField] private GameObject toolTip;
 
-    private bool checkToUnlockCustom = true;
+    private bool _isCustomBattleEnabled = false;
 
-    private void Update()
+    private void OnEnable()
     {
-        if (checkToUnlockCustom)
-        {
-            checkToUnlockCustom = false;
-            CheckUnlockLevel();
-        }
+        CheckUnlockLevel();
+    }
+
+    private void OnDisable()
+    {
+        toolTip.SetActive(false);
     }
 
     private void CheckUnlockLevel()
     {
         if (YandexGame.savesData.gameData.levelsData[LevelType.Lawn] < levelUnlockCusttomBattle)
         {
-            cusstomButton.interactable = false;
+            _isCustomBattleEnabled = false;
             Color col = cusstomButton.gameObject.GetComponent<Image>().color;
             col.a = 0.7f;
             cusstomButton.gameObject.GetComponent<Image>().color = col;
         }
         else
         {
-            cusstomButton.interactable = true;
+            _isCustomBattleEnabled = true;
             Color col = cusstomButton.gameObject.GetComponent<Image>().color;
             col.a = 1;
             cusstomButton.gameObject.GetComponent<Image>().color = col;
@@ -41,6 +43,9 @@ public class ModesWinHandler : MonoBehaviour
 
     public void OnCustomBattle()
     {
-        SceneManager.LoadScene("CustomBattle");
+        if (_isCustomBattleEnabled)
+            SceneManager.LoadScene("CustomBattle");
+        else
+            toolTip.SetActive(true);
     }
 }
