@@ -107,11 +107,10 @@ public class ScrollViewOfCreation : MonoBehaviour
         {
             untilNextReward -= 1;
             
-            if (awardsReceived < 2 && rewardAd != null && untilNextReward == 0)
+            if (awardsReceived < 2 && rewardAd != null && untilNextReward <= 0)
             {
                 soulsAdText.text = "+" + currentAward.ToString();
                 rewardAd.SetActive(true);
-                untilNextReward = 3;
             }
             
             restartLevel = false;
